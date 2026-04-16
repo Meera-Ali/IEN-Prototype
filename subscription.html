@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subscription — CampusRide</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+<div class="dash-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">Campus<span>Ride</span></div>
+    <nav class="sidebar-nav">
+      <a href="rider-dashboard.html" class="sidebar-link"><span class="icon">🏠</span> Dashboard</a>
+      <a href="request-ride.html" class="sidebar-link"><span class="icon">➕</span> Request Ride</a>
+      <a href="ride-history.html" class="sidebar-link"><span class="icon">🕐</span> Ride History</a>
+      <a href="subscription.html" class="sidebar-link active"><span class="icon">🎟️</span> Subscription</a>
+      <div class="sidebar-section-label">Account</div>
+      <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> My Profile</a>
+      <a href="safety.html" class="sidebar-link"><span class="icon">🛡️</span> Safety</a>
+      <a href="login.html" class="sidebar-link"><span class="icon">🚪</span> Log out</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm">S</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">——</div>
+          <div class="sidebar-user-role">Rider · Subscribed</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+    <div style="max-width:680px;">
+
+      <div class="topbar" style="margin-bottom:32px;">
+        <div class="topbar-greeting">
+          <h2>Subscription</h2>
+          <p>Unlimited rides for one flat monthly fee</p>
+        </div>
+      </div>
+
+      <!-- CURRENT PLAN -->
+      <div style="background:linear-gradient(135deg,rgba(108,99,255,0.2),rgba(167,139,250,0.1));border:1px solid rgba(108,99,255,0.3);border-radius:var(--radius-lg);padding:32px;margin-bottom:28px;position:relative;overflow:hidden;">
+        <div class="orb orb-purple" style="width:200px;height:200px;top:-50px;right:-50px;"></div>
+        <div style="position:relative;z-index:1;">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+            <div>
+              <span class="badge badge-accent" style="margin-bottom:10px;display:inline-flex;">✓ Active</span>
+              <h3 style="font-size:1.5rem;margin-bottom:4px;">Monthly Plan</h3>
+              <p style="color:var(--text2);font-size:0.9rem;">Renews on <strong style="color:var(--text);">March 2, 2025</strong></p>
+            </div>
+            <div style="text-align:right;">
+              <p style="font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;">30 AED</p>
+              <p style="color:var(--text2);font-size:0.85rem;">per month</p>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px;">
+            <div style="background:rgba(0,0,0,0.2);border-radius:var(--radius-sm);padding:14px 16px;">
+              <p style="color:var(--text3);font-size:0.78rem;margin-bottom:4px;">Rides this month</p>
+              <p style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;">12</p>
+            </div>
+            <div style="background:rgba(0,0,0,0.2);border-radius:var(--radius-sm);padding:14px 16px;">
+              <p style="color:var(--text3);font-size:0.78rem;margin-bottom:4px;">Saved vs pay-per-ride</p>
+              <p style="font-family:'Syne',sans-serif;font-size:1.4rem;font-weight:700;color:var(--green);">90 AED</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            <button class="btn btn-ghost btn-sm" onclick="showToast('Subscription cancelled. Active until March 2.','info')">Cancel subscription</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLAN COMPARISON -->
+      <h3 style="margin-bottom:20px;">Pay-per-ride vs Subscription</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;">
+
+        <div class="card">
+          <h4 style="margin-bottom:4px;">Pay per ride</h4>
+          <p style="color:var(--text2);font-size:0.85rem;margin-bottom:18px;">No commitment</p>
+          <p style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:700;margin-bottom:16px;">~10 AED <span style="font-size:0.9rem;color:var(--text2);font-family:'DM Sans';">/ride</span></p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+            <li style="font-size:0.88rem;color:var(--text2);">✓ No monthly commitment</li>
+            <li style="font-size:0.88rem;color:var(--text2);">✓ Pay only when you ride</li>
+            <li style="font-size:0.88rem;color:var(--red);">✗ More expensive per ride</li>
+            <li style="font-size:0.88rem;color:var(--red);">✗ No priority matching</li>
+          </ul>
+        </div>
+
+        <div class="card" style="border-color:rgba(108,99,255,0.3);background:rgba(108,99,255,0.06);">
+          <div style="display:flex;justify-content:space-between;">
+            <h4 style="margin-bottom:4px;">Monthly Plan</h4>
+            <span class="badge badge-accent">Best value</span>
+          </div>
+          <p style="color:var(--text2);font-size:0.85rem;margin-bottom:18px;">Unlimited rides</p>
+          <p style="font-family:'Syne',sans-serif;font-size:2rem;font-weight:700;margin-bottom:16px;">30 AED <span style="font-size:0.9rem;color:var(--text2);font-family:'DM Sans';">/month</span></p>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;">
+            <li style="font-size:0.88rem;">✓ No per-ride charges</li>
+            <li style="font-size:0.88rem;">✓ Unlimited ride requests</li>
+            <li style="font-size:0.88rem;color:var(--green);">✓ Break even after 3 rides</li>
+            <li style="font-size:0.88rem;color:var(--green);">✓ Priority matching</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- SAVINGS CALCULATOR -->
+      <div class="card card-lg" style="margin-bottom:20px;">
+        <h4 style="margin-bottom:4px;">💡 Savings calculator</h4>
+        <p style="color:var(--text2);font-size:0.88rem;margin-bottom:20px;">How many rides do you take per month?</p>
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap;">
+          <input type="range" min="1" max="30" value="12" id="rides-slider" oninput="updateCalc()" style="flex:1;accent-color:var(--accent);" />
+          <span id="rides-count" style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;min-width:40px;text-align:center;">12</span>
+          <span style="color:var(--text2);">rides/mo</span>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+          <div style="background:var(--bg2);border-radius:var(--radius-sm);padding:14px;text-align:center;">
+            <p style="color:var(--text3);font-size:0.75rem;margin-bottom:6px;">Pay-per-ride cost</p>
+            <p style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;" id="calc-ppr">120 AED</p>
+          </div>
+          <div style="background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.2);border-radius:var(--radius-sm);padding:14px;text-align:center;">
+            <p style="color:var(--text3);font-size:0.75rem;margin-bottom:6px;">Subscription cost</p>
+            <p style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:var(--accent);">30 AED</p>
+          </div>
+          <div style="background:var(--green-dim);border:1px solid rgba(34,197,94,0.2);border-radius:var(--radius-sm);padding:14px;text-align:center;">
+            <p style="color:var(--text3);font-size:0.75rem;margin-bottom:6px;">You save</p>
+            <p style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;color:var(--green);" id="calc-save">90 AED</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  function updateCalc() {
+    const rides = parseInt(document.getElementById('rides-slider').value);
+    document.getElementById('rides-count').textContent = rides;
+    const ppr = rides * 10;
+    const save = Math.max(0, ppr - 30);
+    document.getElementById('calc-ppr').textContent = ppr + ' AED';
+    document.getElementById('calc-save').textContent = save + ' AED';
+  }
+</script>
+</body>
+</html>

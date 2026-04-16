@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Driver Dashboard — Meshwar مشوار</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+<div class="dash-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">Meshwar <span>مشوار</span></div>
+    <nav class="sidebar-nav">
+      <a href="driver-dashboard.html" class="sidebar-link active"><span class="icon">🏠</span> Dashboard</a>
+      <a href="ride-accept.html" class="sidebar-link"><span class="icon">🔍</span> Browse Requests</a>
+      <a href="chat.html" class="sidebar-link"><span class="icon">💬</span> Ride Chat</a>
+      <a href="ride-history.html" class="sidebar-link"><span class="icon">🕐</span> Ride History</a>
+      <div class="sidebar-section-label">Account</div>
+      <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> My Profile</a>
+      <a href="safety.html" class="sidebar-link"><span class="icon">🛡️</span> Safety</a>
+      <a href="login.html" class="sidebar-link"><span class="icon">🚪</span> Log out</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm" style="background:var(--green);">F</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">——</div>
+          <div class="sidebar-user-role">Driver · ⛽ Petrol</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+
+    <div class="topbar">
+      <div class="topbar-greeting">
+        <h2 id="dash-greeting">Good morning</h2>
+        <p id="dash-day">Monday · You have 2 pending requests nearby</p>
+      </div>
+      <div class="topbar-actions">
+        <div class="topbar-notif">🔔<div class="notif-dot"></div></div>
+        <a href="ride-accept.html" class="btn btn-primary">See requests →</a>
+      </div>
+    </div>
+
+    <!-- STATUS TOGGLE -->
+    <div style="display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 24px;margin-bottom:32px;">
+      <div>
+        <p style="font-weight:600;margin-bottom:2px;">Driver status</p>
+        <p style="color:var(--text2);font-size:0.85rem;">Toggle when you're heading to campus</p>
+      </div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:12px;">
+        <span id="status-label" style="color:var(--green);font-weight:600;font-size:0.9rem;display:flex;align-items:center;gap:6px;"><span class="status-dot" style="width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block;"></span>Online</span>
+        <div class="toggle-switch active" id="status-toggle" onclick="toggleStatus()">
+          <div class="toggle-knob"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row" style="margin-bottom:36px;">
+      <div class="stat-card fade-up">
+        <div class="stat-value" style="color:var(--green);">8</div>
+        <div class="stat-label">Rides given this month</div>
+      </div>
+      <div class="stat-card fade-up-2">
+        <div class="stat-value" style="color:var(--amber);">47 AED</div>
+        <div class="stat-label">Petrol saved this month</div>
+      </div>
+      <div class="stat-card fade-up-3">
+        <div class="stat-value">4.9</div>
+        <div class="stat-label">Your driver rating</div>
+      </div>
+      <div class="stat-card fade-up-4">
+        <div class="stat-value" style="color:var(--accent);">2</div>
+        <div class="stat-label">Requests near you</div>
+      </div>
+    </div>
+
+    <!-- NEARBY REQUESTS PREVIEW -->
+    <div style="margin-bottom:36px;">
+      <div class="section-heading">
+        Requests near you
+        <a href="ride-accept.html" class="btn btn-ghost btn-sm">View all →</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+
+        <div class="card" style="display:flex;align-items:center;gap:16px;">
+          <div style="width:44px;height:44px;background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent2);"><i data-lucide="map-pin" width="20" height="20" stroke-width="1.75"></i></div>
+          <div style="flex:1;">
+            <p style="font-weight:600;margin-bottom:3px;">Al Majaz → University City</p>
+            <p style="color:var(--text2);font-size:0.85rem;">Class at 9:00 AM · 1.2 km from your location</p>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <p style="color:var(--text3);font-size:0.8rem;margin-bottom:6px;">~10 AED split</p>
+            <a href="ride-accept.html" class="btn btn-primary btn-sm">View</a>
+          </div>
+        </div>
+
+        <div class="card" style="display:flex;align-items:center;gap:16px;">
+          <div style="width:44px;height:44px;background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--accent2);"><i data-lucide="map-pin" width="20" height="20" stroke-width="1.75"></i></div>
+          <div style="flex:1;">
+            <p style="font-weight:600;margin-bottom:3px;">Al Khan → UoS Main Gate</p>
+            <p style="color:var(--text2);font-size:0.85rem;">Class at 9:30 AM · 2.8 km from your location</p>
+          </div>
+          <div style="text-align:right;flex-shrink:0;">
+            <p style="color:var(--text3);font-size:0.8rem;margin-bottom:6px;">~10 AED split</p>
+            <a href="ride-accept.html" class="btn btn-secondary btn-sm">View</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- RECENT RIDES -->
+    <div>
+      <div class="section-heading">
+        Recent rides
+        <a href="ride-history.html" class="btn btn-ghost btn-sm">View all</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="ride-card">
+          <div style="display:flex;color:var(--text3);"><i data-lucide="car" width="22" height="22" stroke-width="1.5"></i></div>
+          <div class="ride-card-info">
+            <div class="ride-card-route">Al Majaz <span style="color:var(--text3);">→</span> University City</div>
+            <div class="ride-card-meta"><span>Petrol</span><span>·</span><span>1 rider</span><span>·</span><span>Thu 20 Feb</span></div>
+          </div>
+          <div class="ride-card-price" style="color:var(--green);">+5 AED<small>petrol saved</small></div>
+          <span class="badge badge-green">Done</span>
+        </div>
+        <div class="ride-card">
+          <div style="display:flex;color:var(--text3);"><i data-lucide="car" width="22" height="22" stroke-width="1.5"></i></div>
+          <div class="ride-card-info">
+            <div class="ride-card-route">Sharjah Corniche <span style="color:var(--text3);">→</span> University City</div>
+            <div class="ride-card-meta"><span>Petrol</span><span>·</span><span>2 riders</span><span>·</span><span>Wed 19 Feb</span></div>
+          </div>
+          <div class="ride-card-price" style="color:var(--green);">+12 AED<small>petrol saved</small></div>
+          <span class="badge badge-green">Done</span>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  let online = true;
+  function toggleStatus() {
+    online = !online;
+    const toggle = document.getElementById('status-toggle');
+    const label = document.getElementById('status-label');
+    toggle.classList.toggle('active', online);
+    const dot = `<span class="status-dot" style="width:8px;height:8px;border-radius:50%;background:${online ? 'var(--green)' : 'var(--red)'};display:inline-block;"></span>`;
+    label.innerHTML = dot + (online ? ' Online' : ' Offline');
+    label.style.color = online ? 'var(--green)' : 'var(--red)';
+    showToast(online ? 'You\'re now visible to riders' : 'You\'re now offline', online ? 'success' : 'info');
+  }
+</script>
+<style>
+  .toggle-switch {
+    width: 48px; height: 26px;
+    border-radius: 4px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    position: relative;
+    transition: background 0.25s;
+  }
+  .toggle-switch.active { background: var(--green); border-color: var(--green); }
+  .toggle-knob {
+    position: absolute; top: 3px; left: 3px;
+    width: 18px; height: 18px;
+    border-radius: 50%; background: white;
+    transition: transform 0.25s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+  .toggle-switch.active .toggle-knob { transform: translateX(22px); }
+</style>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Driver Setup — CampusRide</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Campus<span>Ride</span></a>
+</nav>
+
+<div class="auth-page page-wrap">
+  <div class="orb orb-green" style="width:500px;height:500px;top:0;right:-150px;position:fixed;"></div>
+  <div class="container-sm" style="padding-top:60px;padding-bottom:60px;position:relative;z-index:1;">
+
+    <div class="auth-header fade-up">
+      <div class="auth-logo">🚗</div>
+      <h1>Driver verification</h1>
+      <p>Just a couple more things to get you on the road</p>
+    </div>
+
+    <div class="steps fade-up-2">
+      <div class="step-item done"><div class="step-num">✓</div><div class="step-label">Account</div></div>
+      <div class="step-connector"></div>
+      <div class="step-item done"><div class="step-num">✓</div><div class="step-label">Profile</div></div>
+      <div class="step-connector"></div>
+      <div class="step-item done"><div class="step-num">✓</div><div class="step-label">Role</div></div>
+      <div class="step-connector"></div>
+      <div class="step-item active"><div class="step-num">4</div><div class="step-label">Driver</div></div>
+    </div>
+
+    <div class="card card-lg fade-up-3" style="display:flex;flex-direction:column;gap:24px;">
+
+      <div style="background:var(--amber-dim);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius-sm);padding:16px 20px;display:flex;gap:12px;align-items:flex-start;">
+        <span style="font-size:1.2rem;">⚠️</span>
+        <div>
+          <p style="font-weight:500;margin-bottom:4px;font-size:0.9rem;">Why we need this</p>
+          <p style="color:var(--text2);font-size:0.85rem;line-height:1.6;">Your driving license confirms you're a licensed driver. This is required to protect all riders on the platform. Your document is reviewed once and not shared with anyone.</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Driving License (Front)</label>
+        <div class="upload-area" id="upload-front" onclick="triggerUpload('front')">
+          <div class="upload-icon">📄</div>
+          <p>Click to upload front of license</p>
+          <small>JPEG, PNG or PDF — Max 5MB</small>
+        </div>
+        <input type="file" id="file-front" style="display:none;" accept="image/*,.pdf" onchange="fileSelected('front', this)" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Driving License (Back) <span style="color:var(--text3);font-weight:400;">(optional)</span></label>
+        <div class="upload-area" id="upload-back" onclick="triggerUpload('back')">
+          <div class="upload-icon">📄</div>
+          <p>Click to upload back of license</p>
+          <small>JPEG, PNG or PDF — Max 5MB</small>
+        </div>
+        <input type="file" id="file-back" style="display:none;" accept="image/*,.pdf" onchange="fileSelected('back', this)" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Car Make & Model</label>
+        <input type="text" class="form-input" placeholder="e.g. Toyota Camry 2022" />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Car Type</label>
+        <select class="form-input form-select" id="car-type" onchange="toggleEV()">
+          <option value="">Select car type</option>
+          <option value="petrol">⛽ Petrol</option>
+          <option value="electric">⚡ Electric</option>
+        </select>
+      </div>
+
+      <div id="ev-info" style="display:none;background:var(--green-dim);border:1px solid rgba(34,197,94,0.2);border-radius:var(--radius-sm);padding:16px 20px;">
+        <p style="color:var(--green);font-weight:500;margin-bottom:4px;font-size:0.9rem;">🌱 Electric driver perk</p>
+        <p style="color:var(--text2);font-size:0.85rem;line-height:1.6;">You earn ~80% of every ride fare. The remaining 20% goes to the platform. You don't pay anything — riders cover the cost.</p>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Plate Number</label>
+        <input type="text" class="form-input" placeholder="e.g. SHJ 1234" style="text-transform:uppercase;" />
+        <span class="form-hint">Used internally for verification only</span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Years of Driving Experience</label>
+        <select class="form-input form-select">
+          <option value="">Select experience</option>
+          <option>Less than 1 year</option>
+          <option>1–2 years</option>
+          <option>3–5 years</option>
+          <option>5+ years</option>
+        </select>
+      </div>
+
+      <div style="background:var(--surface2);border-radius:var(--radius-sm);padding:16px 20px;">
+        <label class="checkbox-label" style="align-items:flex-start;gap:12px;">
+          <input type="checkbox" id="terms-check" style="margin-top:3px;" />
+          <span style="color:var(--text2);font-size:0.88rem;line-height:1.6;">I confirm that all information provided is accurate and that I hold a valid driving license. I understand that providing false information may result in account suspension.</span>
+        </label>
+      </div>
+
+      <button class="btn btn-green btn-full btn-lg" onclick="submitDriver()">Submit for verification →</button>
+      <p style="text-align:center;color:var(--text3);font-size:0.82rem;">Verification typically takes 1–2 business days.</p>
+
+    </div>
+  </div>
+</div>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  function triggerUpload(side) { document.getElementById('file-' + side).click(); }
+  function fileSelected(side, input) {
+    if (!input.files[0]) return;
+    const area = document.getElementById('upload-' + side);
+    area.innerHTML = `<div class="upload-icon">✅</div><p style="color:var(--green);">${input.files[0].name}</p><small>File selected. Click to change.</small>`;
+    area.style.borderColor = 'var(--green)';
+    area.style.background = 'var(--green-dim)';
+  }
+  function toggleEV() {
+    const v = document.getElementById('car-type').value;
+    document.getElementById('ev-info').style.display = v === 'electric' ? 'block' : 'none';
+  }
+  function submitDriver() {
+    const checked = document.getElementById('terms-check').checked;
+    if (!checked) { showToast('Please agree to the terms first', 'error'); return; }
+    showToast('Documents submitted! Redirecting…', 'success');
+    setTimeout(() => window.location.href = 'driver-dashboard.html', 1400);
+  }
+</script>
+</body>
+</html>

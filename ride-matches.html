@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Available Drivers — CampusRide</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+<div class="dash-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">Campus<span>Ride</span></div>
+    <nav class="sidebar-nav">
+      <a href="rider-dashboard.html" class="sidebar-link"><span class="icon">🏠</span> Dashboard</a>
+      <a href="request-ride.html" class="sidebar-link active"><span class="icon">➕</span> Request Ride</a>
+      <a href="ride-history.html" class="sidebar-link"><span class="icon">🕐</span> Ride History</a>
+      <a href="subscription.html" class="sidebar-link"><span class="icon">🎟️</span> Subscription</a>
+      <div class="sidebar-section-label">Account</div>
+      <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> My Profile</a>
+      <a href="safety.html" class="sidebar-link"><span class="icon">🛡️</span> Safety</a>
+      <a href="login.html" class="sidebar-link"><span class="icon">🚪</span> Log out</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm">S</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">——</div>
+          <div class="sidebar-user-role">Rider · Subscribed</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+
+    <div class="topbar" style="margin-bottom:20px;">
+      <div class="topbar-greeting">
+        <h2>Nearby drivers</h2>
+        <p>Al Majaz → University City · Class at 9:00 AM</p>
+      </div>
+      <div class="topbar-actions">
+        <a href="request-ride.html" class="btn btn-ghost btn-sm">← Edit request</a>
+      </div>
+    </div>
+
+    <!-- PRIVACY NOTICE -->
+    <div style="background:var(--green-dim);border:1px solid rgba(34,197,94,0.2);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:28px;font-size:0.88rem;color:var(--text2);display:flex;gap:10px;">
+      <span>🔒</span>
+      <span>Driver details are limited until a match is confirmed. Full name and contact are revealed after both parties confirm.</span>
+    </div>
+
+    <!-- LIVE STATUS BAR -->
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:28px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 18px;">
+      <div style="width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;animation:pulse-glow 2s infinite;box-shadow:0 0 6px var(--green);"></div>
+      <p style="font-size:0.9rem;"><strong>3 drivers</strong> are heading in your direction right now</p>
+      <span style="margin-left:auto;color:var(--text3);font-size:0.82rem;">Updates live</span>
+    </div>
+
+    <!-- DRIVER CARDS -->
+    <div style="display:flex;flex-direction:column;gap:16px;">
+
+      <!-- Driver 1 - Petrol -->
+      <div class="driver-match-card" onclick="window.location.href='ride-confirm.html'" style="cursor:pointer;">
+        <div class="driver-match-top">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="position:relative;">
+              <div class="avatar avatar-md" style="background:#4f46e5;">F</div>
+              <span style="position:absolute;bottom:-2px;right:-2px;font-size:0.9rem;">⛽</span>
+            </div>
+            <div>
+              <p style="font-weight:600;font-size:1rem;">F***ima K.</p>
+              <div class="stars">★★★★★</div>
+              <p style="color:var(--text3);font-size:0.8rem;">4.9 · 34 rides</p>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <p style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;color:var(--accent);">~10 AED</p>
+            <p style="color:var(--text3);font-size:0.78rem;">per person</p>
+          </div>
+        </div>
+        <div class="driver-match-details">
+          <span class="badge badge-neutral">⛽ Petrol</span>
+          <span class="badge badge-neutral">📍 1.2 km away</span>
+          <span class="badge badge-neutral">🕐 Departs in ~20 min</span>
+          <span class="badge badge-green">✓ 3 yrs exp.</span>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:16px;">
+          <button class="btn btn-primary" style="flex:1;" onclick="event.stopPropagation();window.location.href='ride-confirm.html'">Request this driver →</button>
+          <button class="btn btn-ghost" onclick="event.stopPropagation();showToast('Driver reported to safety team', 'info')">🚩</button>
+        </div>
+      </div>
+
+      <!-- Driver 2 - Electric -->
+      <div class="driver-match-card" onclick="window.location.href='ride-confirm.html'" style="cursor:pointer;border-color:rgba(34,197,94,0.2);">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:4px;">
+          <span class="badge badge-green">🌱 Electric · Eco ride</span>
+        </div>
+        <div class="driver-match-top">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="position:relative;">
+              <div class="avatar avatar-md" style="background:var(--green);color:white;">M</div>
+              <span style="position:absolute;bottom:-2px;right:-2px;font-size:0.9rem;">⚡</span>
+            </div>
+            <div>
+              <p style="font-weight:600;font-size:1rem;">M***ha S.</p>
+              <div class="stars">★★★★★</div>
+              <p style="color:var(--text3);font-size:0.8rem;">4.8 · 61 rides</p>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <p style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;color:var(--green);">~8 AED</p>
+            <p style="color:var(--text3);font-size:0.78rem;">per person</p>
+          </div>
+        </div>
+        <div class="driver-match-details">
+          <span class="badge badge-green">⚡ Electric</span>
+          <span class="badge badge-neutral">📍 2.0 km away</span>
+          <span class="badge badge-neutral">🕐 Departs in ~35 min</span>
+          <span class="badge badge-green">✓ 5+ yrs exp.</span>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:16px;">
+          <button class="btn btn-green" style="flex:1;" onclick="event.stopPropagation();window.location.href='ride-confirm.html'">Request this driver →</button>
+          <button class="btn btn-ghost" onclick="event.stopPropagation();showToast('Driver reported to safety team', 'info')">🚩</button>
+        </div>
+      </div>
+
+      <!-- Driver 3 - Petrol, less ratings -->
+      <div class="driver-match-card" onclick="window.location.href='ride-confirm.html'" style="cursor:pointer;">
+        <div class="driver-match-top">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <div style="position:relative;">
+              <div class="avatar avatar-md" style="background:#7c3aed;">L</div>
+              <span style="position:absolute;bottom:-2px;right:-2px;font-size:0.9rem;">⛽</span>
+            </div>
+            <div>
+              <p style="font-weight:600;font-size:1rem;">L***la A.</p>
+              <div class="stars">★★★★☆</div>
+              <p style="color:var(--text3);font-size:0.8rem;">4.3 · 12 rides</p>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <p style="font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:700;color:var(--accent);">~10 AED</p>
+            <p style="color:var(--text3);font-size:0.78rem;">per person</p>
+          </div>
+        </div>
+        <div class="driver-match-details">
+          <span class="badge badge-neutral">⛽ Petrol</span>
+          <span class="badge badge-neutral">📍 3.1 km away</span>
+          <span class="badge badge-neutral">🕐 Departs in ~50 min</span>
+          <span class="badge badge-neutral">1–2 yrs exp.</span>
+        </div>
+        <div style="display:flex;gap:10px;margin-top:16px;">
+          <button class="btn btn-secondary" style="flex:1;" onclick="event.stopPropagation();window.location.href='ride-confirm.html'">Request this driver →</button>
+          <button class="btn btn-ghost" onclick="event.stopPropagation();showToast('Driver reported to safety team', 'info')">🚩</button>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;color:var(--text3);font-size:0.85rem;margin-top:28px;">More drivers may appear as people head your way. Your request is live.</p>
+
+  </main>
+</div>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<style>
+  .driver-match-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 24px;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .driver-match-card:hover { border-color: var(--border-hover); transform: translateY(-2px); }
+  .driver-match-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+  .driver-match-details { display: flex; gap: 8px; flex-wrap: wrap; }
+</style>
+</body>
+</html>

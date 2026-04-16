@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request Ride — CampusRide</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+<div class="dash-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">Campus<span>Ride</span></div>
+    <nav class="sidebar-nav">
+      <a href="rider-dashboard.html" class="sidebar-link"><span class="icon">🏠</span> Dashboard</a>
+      <a href="request-ride.html" class="sidebar-link active"><span class="icon">➕</span> Request Ride</a>
+      <a href="ride-history.html" class="sidebar-link"><span class="icon">🕐</span> Ride History</a>
+      <a href="subscription.html" class="sidebar-link"><span class="icon">🎟️</span> Subscription</a>
+      <div class="sidebar-section-label">Account</div>
+      <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> My Profile</a>
+      <a href="safety.html" class="sidebar-link"><span class="icon">🛡️</span> Safety</a>
+      <a href="login.html" class="sidebar-link"><span class="icon">🚪</span> Log out</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm">S</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">——</div>
+          <div class="sidebar-user-role">Rider · Subscribed</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+    <div style="max-width:680px;">
+
+      <div class="topbar" style="margin-bottom:28px;">
+        <div class="topbar-greeting">
+          <h2>Request a ride</h2>
+          <p>Tell us where you are and when your class starts</p>
+        </div>
+      </div>
+
+      <!-- INFO BANNER -->
+      <div style="background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.2);border-radius:var(--radius-sm);padding:14px 18px;margin-bottom:28px;font-size:0.88rem;color:var(--text2);display:flex;gap:10px;align-items:flex-start;">
+        <span>ℹ️</span>
+        <span>Your personal details are <strong style="color:var(--text);">not visible</strong> to drivers until both sides confirm the ride.</span>
+      </div>
+
+      <!-- FORM -->
+      <div class="card card-lg" style="display:flex;flex-direction:column;gap:24px;">
+
+        <div class="form-group">
+          <label class="form-label">Pickup Location</label>
+          <div style="position:relative;">
+            <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:1.1rem;">📍</span>
+            <input type="text" class="form-input" placeholder="e.g. Al Majaz, Sharjah" style="padding-left:44px;" id="pickup-input" oninput="suggestLocations(this.value)" />
+          </div>
+          <span class="form-hint">Enter a neighbourhood, landmark, or address</span>
+          <div id="location-suggestions" style="display:none;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-top:4px;"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Destination / Campus</label>
+          <div style="position:relative;">
+            <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:1.1rem;">🎓</span>
+            <select class="form-input form-select" style="padding-left:44px;">
+              <option value="">Select your campus gate</option>
+              <option>University City – Main Gate</option>
+              <option>University City – Gate 2</option>
+              <option>University of Sharjah – Main</option>
+              <option>American University of Sharjah</option>
+              <option>Skyline University College</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div class="form-group">
+            <label class="form-label">Class Start Time</label>
+            <input type="time" class="form-input" value="09:00" />
+            <span class="form-hint">When does your class begin?</span>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Pickup Date</label>
+            <input type="date" class="form-input" id="date-input" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Preferred Car Type</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+            <label class="car-pref-opt selected" id="cp-any" onclick="selectCarPref('any')">
+              <input type="radio" name="carpref" value="any" checked style="display:none;" />
+              <span>🚗</span><p>Any</p>
+            </label>
+            <label class="car-pref-opt" id="cp-petrol" onclick="selectCarPref('petrol')">
+              <input type="radio" name="carpref" value="petrol" style="display:none;" />
+              <span>⛽</span><p>Petrol</p>
+            </label>
+            <label class="car-pref-opt" id="cp-electric" onclick="selectCarPref('electric')">
+              <input type="radio" name="carpref" value="electric" style="display:none;" />
+              <span>⚡</span><p>Electric</p>
+            </label>
+          </div>
+          <span class="form-hint">Electric rides may have different pricing</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Additional Note <span style="color:var(--text3);font-weight:400;">(optional)</span></label>
+          <textarea class="form-input" rows="3" placeholder="e.g. I'll be waiting at the pharmacy near the main road" style="resize:none;"></textarea>
+        </div>
+
+        <!-- COST ESTIMATE -->
+        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px 20px;">
+          <p style="font-size:0.82rem;color:var(--text3);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Estimated cost</p>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <p style="font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:700;color:var(--accent);" id="est-cost">~10 AED</p>
+              <p style="color:var(--text3);font-size:0.82rem;" id="sub-note">🎟️ Covered by your subscription</p>
+            </div>
+            <div style="text-align:right;">
+              <p style="color:var(--text2);font-size:0.85rem;">vs taxi: ~45 AED</p>
+              <p style="color:var(--green);font-size:0.82rem;font-weight:600;">Save ~35 AED</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary btn-full btn-lg" onclick="postRequest()">Post ride request →</button>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  // Set default date to today
+  document.getElementById('date-input').valueAsDate = new Date();
+
+  const suggestions = ['Al Majaz, Sharjah', 'Al Khan, Sharjah', 'Sharjah Corniche', 'Al Nahda, Sharjah', 'Bu Tina', 'Muwaileh', 'Al Taawun'];
+  function suggestLocations(val) {
+    const el = document.getElementById('location-suggestions');
+    if (!val || val.length < 2) { el.style.display = 'none'; return; }
+    const matches = suggestions.filter(s => s.toLowerCase().includes(val.toLowerCase()));
+    if (!matches.length) { el.style.display = 'none'; return; }
+    el.innerHTML = matches.map(m => `<div onclick="pickLocation('${m}')" style="padding:12px 16px;cursor:pointer;font-size:0.9rem;border-bottom:1px solid var(--border);transition:background 0.15s;" onmouseover="this.style.background='var(--surface)'" onmouseout="this.style.background=''">📍 ${m}</div>`).join('');
+    el.style.display = 'block';
+  }
+  function pickLocation(loc) {
+    document.getElementById('pickup-input').value = loc;
+    document.getElementById('location-suggestions').style.display = 'none';
+  }
+  function selectCarPref(v) {
+    ['any','petrol','electric'].forEach(k => {
+      document.getElementById('cp-'+k).classList.toggle('selected', k === v);
+    });
+  }
+  function postRequest() {
+    const pickup = document.getElementById('pickup-input').value;
+    if (!pickup) { showToast('Please enter a pickup location', 'error'); return; }
+    showToast('Ride request posted! Looking for drivers…', 'success');
+    setTimeout(() => window.location.href = 'ride-matches.html', 1400);
+  }
+</script>
+<style>
+  .car-pref-opt {
+    border: 2px solid var(--border); border-radius: var(--radius-sm);
+    padding: 16px 12px; text-align: center; cursor: pointer; transition: all 0.2s;
+    background: var(--bg2); display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .car-pref-opt span { font-size: 1.5rem; }
+  .car-pref-opt p { font-size: 0.82rem; font-weight: 500; color: var(--text2); }
+  .car-pref-opt.selected { border-color: var(--accent); background: rgba(108,99,255,0.08); }
+  .car-pref-opt.selected p { color: var(--text); }
+</style>
+</body>
+</html>

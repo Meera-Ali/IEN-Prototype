@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safety — CampusRide</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+<div class="dash-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">Campus<span>Ride</span></div>
+    <nav class="sidebar-nav">
+      <a href="rider-dashboard.html" class="sidebar-link"><span class="icon">🏠</span> Dashboard</a>
+      <a href="request-ride.html" class="sidebar-link"><span class="icon">➕</span> Request Ride</a>
+      <a href="ride-history.html" class="sidebar-link"><span class="icon">🕐</span> Ride History</a>
+      <a href="subscription.html" class="sidebar-link"><span class="icon">🎟️</span> Subscription</a>
+      <div class="sidebar-section-label">Account</div>
+      <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> My Profile</a>
+      <a href="safety.html" class="sidebar-link active"><span class="icon">🛡️</span> Safety</a>
+      <a href="login.html" class="sidebar-link"><span class="icon">🚪</span> Log out</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm">S</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">——</div>
+          <div class="sidebar-user-role">Rider · Subscribed</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+    <div style="max-width:760px;">
+
+      <div class="topbar" style="margin-bottom:32px;">
+        <div class="topbar-greeting">
+          <h2>Safety & Trust</h2>
+          <p>How CampusRide keeps every student safe</p>
+        </div>
+      </div>
+
+      <!-- EMERGENCY BUTTON -->
+      <div style="background:var(--red-dim);border:1px solid rgba(239,68,68,0.3);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+        <span style="font-size:2.5rem;">🆘</span>
+        <div style="flex:1;">
+          <h3 style="color:var(--red);margin-bottom:4px;">Emergency contact</h3>
+          <p style="color:var(--text2);font-size:0.9rem;">Feel unsafe during a ride? Alert campus security and your emergency contact instantly.</p>
+        </div>
+        <button class="btn btn-danger" onclick="showToast('Emergency alert sent to campus security','error')">Send SOS alert</button>
+      </div>
+
+      <!-- PILLARS -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px;">
+
+        <div class="card fade-up">
+          <div style="font-size:2rem;margin-bottom:14px;">🎓</div>
+          <h4 style="margin-bottom:10px;">University verification</h4>
+          <p style="color:var(--text2);font-size:0.88rem;line-height:1.7;">Every user must sign up with an active university email — the same credentials used for iLearn and other institutional systems. Random or personal emails are rejected. This ensures only current students can access the platform.</p>
+        </div>
+
+        <div class="card fade-up-2">
+          <div style="font-size:2rem;margin-bottom:14px;">👥</div>
+          <h4 style="margin-bottom:10px;">Gender separation</h4>
+          <p style="color:var(--text2);font-size:0.88rem;line-height:1.7;">The app separates users by gender. Female users only see female drivers, and male users only see male drivers. This is a hard platform rule — no override is possible — to ensure every user rides comfortably and safely.</p>
+        </div>
+
+        <div class="card fade-up-3">
+          <div style="font-size:2rem;margin-bottom:14px;">🪪</div>
+          <h4 style="margin-bottom:10px;">License verification</h4>
+          <p style="color:var(--text2);font-size:0.88rem;line-height:1.7;">All drivers must upload a valid UAE driving license during signup. Our team reviews every submission before a driver can accept rides. Licenses are checked against the provided university ID to prevent impersonation.</p>
+        </div>
+
+        <div class="card fade-up-4">
+          <div style="font-size:2rem;margin-bottom:14px;">🔒</div>
+          <h4 style="margin-bottom:10px;">Privacy by default</h4>
+          <p style="color:var(--text2);font-size:0.88rem;line-height:1.7;">When a rider posts a request, no personal information is visible to drivers — only the area and time. Full details (first name, car info, plate number) are only shared after both parties explicitly confirm the ride.</p>
+        </div>
+
+        <div class="card fade-up">
+          <div style="font-size:2rem;margin-bottom:14px;">⭐</div>
+          <h4 style="margin-bottom:10px;">Ratings & accountability</h4>
+          <p style="color:var(--text2);font-size:0.88rem;line-height:1.7;">After every ride, both the rider and driver can rate each other. Accounts with consistently low ratings are flagged for review. Repeated poor behaviour results in permanent suspension from the platform.</p>
+        </div>
+
+        <div class="card fade-up-2">
+          <div style="font-size:2rem;margin-bottom:14px;">📍</div>
+          <h4 style="margin-bottom:10px;">In-app route tracking</h4>
+          <p style="color:var(--text2);font-size:0.88rem;line-height:1.7;">The agreed pickup and destination are locked before the ride starts. Riders can see the active route in-app throughout the journey. Any significant deviation triggers an automatic safety check-in notification.</p>
+        </div>
+
+      </div>
+
+      <!-- COMMUNITY GUIDELINES -->
+      <div class="card card-lg" style="margin-bottom:20px;">
+        <h4 style="margin-bottom:18px;">Community guidelines</h4>
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="color:var(--green);font-size:1.1rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <p style="color:var(--text2);font-size:0.9rem;line-height:1.6;"><strong style="color:var(--text);">Be on time.</strong> If you request a ride, be at your pickup location when agreed. Repeated no-shows affect your account.</p>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="color:var(--green);font-size:1.1rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <p style="color:var(--text2);font-size:0.9rem;line-height:1.6;"><strong style="color:var(--text);">Respect personal space.</strong> Keep conversation respectful. No personal questions or inappropriate behaviour.</p>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="color:var(--green);font-size:1.1rem;flex-shrink:0;margin-top:1px;">✓</span>
+            <p style="color:var(--text2);font-size:0.9rem;line-height:1.6;"><strong style="color:var(--text);">Honest reviews.</strong> Leave accurate ratings to help the community trust each other.</p>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="color:var(--red);font-size:1.1rem;flex-shrink:0;margin-top:1px;">✗</span>
+            <p style="color:var(--text2);font-size:0.9rem;line-height:1.6;"><strong style="color:var(--text);">No account sharing.</strong> Your account is personal. Letting others use it is grounds for permanent ban.</p>
+          </div>
+          <div style="display:flex;gap:14px;align-items:flex-start;">
+            <span style="color:var(--red);font-size:1.1rem;flex-shrink:0;margin-top:1px;">✗</span>
+            <p style="color:var(--text2);font-size:0.9rem;line-height:1.6;"><strong style="color:var(--text);">No cash outside the app.</strong> All payments go through CampusRide. Asking for cash separately violates our policy.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- REPORT -->
+      <div class="card" style="border-color:rgba(245,158,11,0.2);">
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+          <span style="font-size:2rem;">🚩</span>
+          <div style="flex:1;">
+            <h4 style="margin-bottom:4px;">Report a concern</h4>
+            <p style="color:var(--text2);font-size:0.88rem;">Uncomfortable during a ride? Seen something suspicious? Let us know. All reports are confidential.</p>
+          </div>
+          <button class="btn btn-ghost" onclick="showToast('Report form opening…','info')">Submit report →</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+</body>
+</html>

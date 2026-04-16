@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found — CampusRide</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Campus<span>Ride</span></a>
+  <div class="nav-links">
+    <a href="rider-dashboard.html" class="nav-link">Dashboard</a>
+    <a href="index.html" class="btn btn-secondary btn-sm">Home</a>
+  </div>
+</nav>
+
+<div class="page-wrap" style="display:flex;align-items:center;justify-content:center;min-height:100vh;">
+  <div class="orb orb-purple" style="width:500px;height:500px;top:-100px;left:50%;transform:translateX(-50%);position:fixed;"></div>
+  <div style="text-align:center;position:relative;z-index:1;padding:40px 20px;">
+    <div style="font-size:6rem;margin-bottom:20px;animation:float 3s ease-in-out infinite;">🚗</div>
+    <h1 style="font-size:7rem;font-weight:800;color:rgba(108,99,255,0.15);line-height:1;margin-bottom:0;font-family:'Syne',sans-serif;">404</h1>
+    <h2 style="font-size:1.8rem;margin-bottom:12px;margin-top:-16px;">Wrong turn!</h2>
+    <p style="color:var(--text2);font-size:1rem;max-width:380px;margin:0 auto 36px;line-height:1.7;">Looks like this page got lost on the way to campus. Let's get you back on the right route.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <a href="index.html" class="btn btn-primary btn-lg">← Back to home</a>
+      <a href="rider-dashboard.html" class="btn btn-ghost btn-lg">Go to dashboard</a>
+    </div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<style>
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-16px); }
+  }
+</style>
+</body>
+</html>

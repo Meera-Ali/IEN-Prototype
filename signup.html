@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign Up — Meshwar مشوار</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Meshwar <span>مشوار</span></a>
+  <div class="nav-links">
+    <a href="login.html" class="nav-link">Already have an account? <strong>Log in</strong></a>
+  </div>
+</nav>
+
+<div class="auth-page page-wrap">
+  <div class="orb orb-purple" style="width:500px;height:500px;top:-100px;left:-150px;position:fixed;"></div>
+  <div class="container-sm" style="padding-top:60px;padding-bottom:60px;position:relative;z-index:1;">
+
+    <div class="auth-header fade-up">
+      <div class="auth-logo">🚀</div>
+      <h1>Create your account</h1>
+      <p>Join your campus carpool community</p>
+    </div>
+
+    <!-- STEPS -->
+    <div class="steps fade-up-2" id="step-indicator">
+      <div class="step-item active" id="si-1">
+        <div class="step-num">1</div>
+        <div class="step-label">Account</div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" id="si-2">
+        <div class="step-num">2</div>
+        <div class="step-label">Profile</div>
+      </div>
+      <div class="step-connector"></div>
+      <div class="step-item" id="si-3">
+        <div class="step-num">3</div>
+        <div class="step-label">Role</div>
+      </div>
+    </div>
+
+    <div class="card card-lg fade-up-3">
+
+      <!-- STEP 1 -->
+      <div class="signup-step active" id="step-1">
+        <h3 style="margin-bottom:4px;">Account details</h3>
+        <p style="color:var(--text2);font-size:0.9rem;margin-bottom:8px;">Use your official university email to get verified.</p>
+
+        <div class="form-group">
+          <label class="form-label">University Email</label>
+          <input type="email" class="form-input" placeholder="yourname@university.ac.ae" id="email-input" />
+          <span class="form-hint">Must match your institution account (e.g. iLearn)</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-input" placeholder="At least 8 characters" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Confirm Password</label>
+          <input type="password" class="form-input" placeholder="Repeat your password" />
+        </div>
+        <button class="btn btn-primary btn-full btn-lg" onclick="nextStep(1)">Continue →</button>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="signup-step" id="step-2">
+        <h3 style="margin-bottom:4px;">Tell us about yourself</h3>
+        <p style="color:var(--text2);font-size:0.9rem;margin-bottom:8px;">This helps us match you correctly.</p>
+
+        <div class="form-group">
+          <label class="form-label">First Name</label>
+          <input type="text" class="form-input" placeholder="Your first name" id="firstname-input" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">University / Campus</label>
+          <input type="text" class="form-input" placeholder="e.g. University of Sharjah" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Gender</label>
+          <div class="gender-toggle">
+            <label class="gender-opt selected" id="go-m" onclick="selectGender('male')">
+              <input type="radio" name="gender" value="male" checked />
+              <span>👨‍🎓</span>
+              <p>Male</p>
+            </label>
+            <label class="gender-opt" id="go-f" onclick="selectGender('female')">
+              <input type="radio" name="gender" value="female" />
+              <span>👩‍🎓</span>
+              <p>Female</p>
+            </label>
+          </div>
+          <span class="form-hint">The app separates users by gender for your safety.</span>
+        </div>
+        <div style="display:flex;gap:12px;">
+          <button class="btn btn-ghost btn-lg" style="flex:1;" onclick="prevStep(2)">← Back</button>
+          <button class="btn btn-primary btn-lg" style="flex:2;" onclick="nextStep(2)">Continue →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="signup-step" id="step-3">
+        <h3 style="margin-bottom:4px;">How will you use Meshwar مشوار?</h3>
+        <p style="color:var(--text2);font-size:0.9rem;margin-bottom:8px;">You can always switch roles later.</p>
+
+        <div class="role-toggle">
+          <label class="role-opt selected" id="ro-rider" onclick="selectRole('rider')">
+            <input type="radio" name="role" value="rider" checked />
+            <div class="role-opt-icon">🎒</div>
+            <h4>Rider</h4>
+            <p>Request rides from student drivers near you</p>
+          </label>
+          <label class="role-opt" id="ro-driver" onclick="selectRole('driver')">
+            <input type="radio" name="role" value="driver" />
+            <div class="role-opt-icon">🚗</div>
+            <h4>Driver</h4>
+            <p>Offer rides and split costs with classmates</p>
+          </label>
+        </div>
+
+        <div id="driver-extra" style="display:none;flex-direction:column;gap:20px;">
+          <p style="color:var(--accent2);font-size:0.88rem;font-weight:500;">Drivers need to complete a quick extra step →</p>
+          <div class="form-group">
+            <label class="form-label">Car Type</label>
+            <select class="form-input form-select">
+              <option value="">Select your car type</option>
+              <option value="petrol">Petrol</option>
+              <option value="electric">Electric ⚡</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px;margin-top:8px;">
+          <button class="btn btn-ghost btn-lg" style="flex:1;" onclick="prevStep(3)">← Back</button>
+          <button class="btn btn-primary btn-lg" style="flex:2;" onclick="finishSignup()">Create account →</button>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="auth-footer-note fade-up-4" id="signin-link">
+      Already have an account? <a href="login.html" class="link-accent">Log in →</a>
+    </p>
+  </div>
+</div>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  let currentStep = 1;
+
+  function nextStep(from) {
+    if (from === 1) {
+      const email = document.getElementById('email-input').value;
+      if (!email.includes('@')) { showToast('Please enter a valid university email', 'error'); return; }
+    }
+    setStep(from + 1);
+  }
+  function prevStep(from) { setStep(from - 1); }
+
+  function setStep(n) {
+    currentStep = n;
+    document.querySelectorAll('.signup-step').forEach((s,i) => s.classList.toggle('active', i+1 === n));
+    ['si-1','si-2','si-3'].forEach((id,i) => {
+      const el = document.getElementById(id);
+      el.className = 'step-item';
+      if (i+1 < n) el.classList.add('done');
+      if (i+1 === n) el.classList.add('active');
+    });
+    if (n === 3) document.getElementById('signin-link').style.display = 'none';
+  }
+
+  function selectGender(g) {
+    document.getElementById('go-m').classList.toggle('selected', g === 'male');
+    document.getElementById('go-f').classList.toggle('selected', g === 'female');
+  }
+
+  function selectRole(r) {
+    document.getElementById('ro-rider').classList.toggle('selected', r === 'rider');
+    document.getElementById('ro-driver').classList.toggle('selected', r === 'driver');
+    const extra = document.getElementById('driver-extra');
+    extra.style.display = r === 'driver' ? 'flex' : 'none';
+  }
+
+  function finishSignup() {
+    const isDriver = document.getElementById('ro-driver').classList.contains('selected');
+    const firstName = document.getElementById('firstname-input').value.trim();
+    if (firstName) localStorage.setItem('meshwar_name', firstName);
+    showToast('Account created! Redirecting…', 'success');
+    setTimeout(() => {
+      window.location.href = isDriver ? 'signup-driver.html' : 'rider-dashboard.html';
+    }, 1200);
+  }
+</script>
+</body>
+</html>

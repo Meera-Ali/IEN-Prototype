@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Meshwar مشوار</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+<div class="dash-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">Meshwar <span>مشوار</span></div>
+    <nav class="sidebar-nav">
+      <a href="rider-dashboard.html" class="sidebar-link active"><span class="icon">🏠</span> Dashboard</a>
+      <a href="request-ride.html" class="sidebar-link"><span class="icon">➕</span> Request Ride</a>
+      <a href="chat.html" class="sidebar-link"><span class="icon">💬</span> Ride Chat</a>
+      <a href="ride-history.html" class="sidebar-link"><span class="icon">🕐</span> Ride History</a>
+      <a href="subscription.html" class="sidebar-link"><span class="icon">🎟️</span> Subscription</a>
+      <div class="sidebar-section-label">Account</div>
+      <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> My Profile</a>
+      <a href="safety.html" class="sidebar-link"><span class="icon">🛡️</span> Safety</a>
+      <a href="login.html" class="sidebar-link"><span class="icon">🚪</span> Log out</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm">S</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">——</div>
+          <div class="sidebar-user-role">Rider · Subscribed</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="dash-main">
+
+    <div class="topbar">
+      <div class="topbar-greeting">
+        <h2 id="dash-greeting">Good morning 👋</h2>
+        <p id="dash-day">Monday · Ready for class?</p>
+      </div>
+      <div class="topbar-actions">
+        <div class="topbar-notif">🔔<div class="notif-dot"></div></div>
+        <a href="request-ride.html" class="btn btn-primary">+ Request Ride</a>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-row" style="margin-bottom:36px;">
+      <div class="stat-card fade-up">
+        <div class="stat-value" style="color:var(--accent);">12</div>
+        <div class="stat-label">Rides this month</div>
+      </div>
+      <div class="stat-card fade-up-2">
+        <div class="stat-value" style="color:var(--green);">142 AED</div>
+        <div class="stat-label">Saved vs taxis</div>
+      </div>
+      <div class="stat-card fade-up-3">
+        <div class="stat-value">4.9 ⭐</div>
+        <div class="stat-label">Your rating</div>
+      </div>
+      <div class="stat-card fade-up-4">
+        <div class="stat-value" style="color:var(--amber);">7 days</div>
+        <div class="stat-label">Sub remaining</div>
+      </div>
+    </div>
+
+    <!-- ACTIVE RIDE -->
+    <div style="margin-bottom:36px;">
+      <div class="section-heading">Active Request</div>
+      <div style="background:var(--surface);border:1px solid rgba(108,99,255,0.3);border-radius:var(--radius);padding:24px;display:flex;gap:20px;align-items:center;">
+        <div style="color:var(--accent);display:flex;"><i data-lucide="search" width="30" height="30" stroke-width="1.5"></i></div>
+        <div style="flex:1;">
+          <p style="font-weight:600;margin-bottom:4px;">Searching for drivers…</p>
+          <p style="color:var(--text2);font-size:0.88rem;">From: Al Majaz, Sharjah → University City</p>
+          <p style="color:var(--text3);font-size:0.82rem;margin-top:6px;">Class at 9:00 AM · Posted 8 minutes ago</p>
+        </div>
+        <div>
+          <span class="badge badge-accent" style="margin-bottom:10px;display:flex;">Waiting</span>
+          <button class="btn btn-danger btn-sm" onclick="cancelRide()">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RECENT RIDES -->
+    <div style="margin-bottom:36px;">
+      <div class="section-heading">
+        Recent Rides
+        <a href="ride-history.html" class="btn btn-ghost btn-sm">View all</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div class="ride-card">
+          <div style="display:flex;color:var(--text3);"><i data-lucide="car" width="22" height="22" stroke-width="1.5"></i></div>
+          <div class="ride-card-info">
+            <div class="ride-card-route">Al Majaz <span style="color:var(--text3);">→</span> University City</div>
+            <div class="ride-card-meta"><span>Petrol</span><span>·</span><span>Fatima K.</span><span>·</span><span>Thu 20 Feb</span></div>
+          </div>
+          <div class="ride-card-price">10 AED<small>Subscription ride</small></div>
+          <span class="badge badge-green">Completed</span>
+        </div>
+        <div class="ride-card">
+          <div style="display:flex;color:var(--text3);"><i data-lucide="zap" width="22" height="22" stroke-width="1.5"></i></div>
+          <div class="ride-card-info">
+            <div class="ride-card-route">Sharjah Corniche <span style="color:var(--text3);">→</span> UoS Gate 2</div>
+            <div class="ride-card-meta"><span>Electric</span><span>·</span><span>Maha S.</span><span>·</span><span>Wed 19 Feb</span></div>
+          </div>
+          <div class="ride-card-price">8 AED<small>Subscription ride</small></div>
+          <span class="badge badge-green">Completed</span>
+        </div>
+        <div class="ride-card">
+          <div style="display:flex;color:var(--text3);"><i data-lucide="car" width="22" height="22" stroke-width="1.5"></i></div>
+          <div class="ride-card-info">
+            <div class="ride-card-route">Al Khan <span style="color:var(--text3);">→</span> University City</div>
+            <div class="ride-card-meta"><span>Petrol</span><span>·</span><span>Layla A.</span><span>·</span><span>Mon 17 Feb</span></div>
+          </div>
+          <div class="ride-card-price">10 AED<small>Paid</small></div>
+          <span class="badge badge-amber">Rated</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBSCRIPTION BANNER -->
+    <div style="background:linear-gradient(135deg,rgba(108,99,255,0.15),rgba(167,139,250,0.1));border:1px solid rgba(108,99,255,0.25);border-radius:var(--radius);padding:24px;display:flex;align-items:center;gap:20px;">
+      <span style="display:flex;color:var(--accent2);"><i data-lucide="ticket" width="30" height="30" stroke-width="1.5"></i></span>
+      <div style="flex:1;">
+        <p style="font-weight:600;margin-bottom:4px;">Your subscription renews in 7 days</p>
+        <p style="color:var(--text2);font-size:0.88rem;">30 AED/month · Unlimited rides · No per-ride charges</p>
+      </div>
+      <a href="subscription.html" class="btn btn-ghost btn-sm">Manage</a>
+    </div>
+
+  </main>
+</div>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  function cancelRide() {
+    if (confirm('Cancel your current ride request?')) showToast('Ride request cancelled', 'info');
+  }
+</script>
+</body>
+</html>

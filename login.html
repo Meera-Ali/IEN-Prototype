@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log In — Meshwar مشوار</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo">Meshwar <span>مشوار</span></a>
+  <div class="nav-links">
+    <a href="signup.html" class="nav-link">Don't have an account? <strong>Sign up</strong></a>
+  </div>
+</nav>
+
+<div class="auth-page page-wrap">
+  <div class="orb orb-purple" style="width:500px;height:500px;top:-100px;right:-100px;position:fixed;"></div>
+  <div class="container-sm" style="padding-top: 60px; padding-bottom: 60px; position:relative;z-index:1;">
+
+    <div class="auth-header fade-up">
+      <div class="auth-logo">🎓</div>
+      <h1>Welcome back</h1>
+      <p>Sign in with your institution credentials</p>
+    </div>
+
+    <div class="card card-lg fade-up-2">
+
+      <div class="tabs" style="margin-bottom: 28px;">
+        <button class="tab active" onclick="setRole('rider', this)">I'm a Rider</button>
+        <button class="tab" onclick="setRole('driver', this)">I'm a Driver</button>
+      </div>
+
+      <form onsubmit="handleLogin(event)" style="display:flex;flex-direction:column;gap:20px;">
+
+        <div class="form-group">
+          <label class="form-label">University Email</label>
+          <input type="email" class="form-input" placeholder="yourname@university.ac.ae" required />
+          <span class="form-hint">Use the same email as your iLearn account</span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <div class="input-icon-wrap">
+            <input type="password" class="form-input" placeholder="Enter your password" id="pw-input" required />
+            <button type="button" class="input-icon-btn" onclick="togglePw()">👁️</button>
+          </div>
+        </div>
+
+        <div class="auth-row">
+          <label class="checkbox-label">
+            <input type="checkbox" /> Remember me
+          </label>
+          <a href="#" class="link-subtle">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full btn-lg">Sign in →</button>
+
+        <div class="divider">or</div>
+
+        <button type="button" class="btn btn-secondary btn-full" onclick="showToast('Institution SSO coming soon!', 'info')">
+          Sign in with Institution SSO
+        </button>
+
+      </form>
+    </div>
+
+    <p class="auth-footer-note fade-up-3">
+      New to Meshwar مشوار? <a href="signup.html" class="link-accent">Create an account →</a>
+    </p>
+  </div>
+</div>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  let role = 'rider';
+  function setRole(r, btn) {
+    role = r;
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  function togglePw() {
+    const inp = document.getElementById('pw-input');
+    inp.type = inp.type === 'password' ? 'text' : 'password';
+  }
+  function handleLogin(e) {
+    e.preventDefault();
+    const email = e.target.querySelector('input[type="email"]').value;
+    const derived = email.split('@')[0].split('.')[0];
+    const name = derived.charAt(0).toUpperCase() + derived.slice(1);
+    localStorage.setItem('meshwar_name', name);
+    showToast('Signing you in…', 'info');
+    setTimeout(() => {
+      window.location.href = role === 'driver' ? 'driver-dashboard.html' : 'rider-dashboard.html';
+    }, 1000);
+  }
+</script>
+</body>
+</html>

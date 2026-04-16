@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ride History — CampusRide</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+<div class="dash-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-logo">Campus<span>Ride</span></div>
+    <nav class="sidebar-nav">
+      <a href="rider-dashboard.html" class="sidebar-link"><span class="icon">🏠</span> Dashboard</a>
+      <a href="request-ride.html" class="sidebar-link"><span class="icon">➕</span> Request Ride</a>
+      <a href="ride-history.html" class="sidebar-link active"><span class="icon">🕐</span> Ride History</a>
+      <a href="subscription.html" class="sidebar-link"><span class="icon">🎟️</span> Subscription</a>
+      <div class="sidebar-section-label">Account</div>
+      <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> My Profile</a>
+      <a href="safety.html" class="sidebar-link"><span class="icon">🛡️</span> Safety</a>
+      <a href="login.html" class="sidebar-link"><span class="icon">🚪</span> Log out</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="avatar avatar-sm">S</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name">——</div>
+          <div class="sidebar-user-role">Rider · Subscribed</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="dash-main">
+
+    <div class="topbar" style="margin-bottom:32px;">
+      <div class="topbar-greeting">
+        <h2>Ride History</h2>
+        <p>All your past rides and receipts</p>
+      </div>
+      <button class="btn btn-ghost btn-sm" onclick="showToast('Export coming soon!','info')">📥 Export CSV</button>
+    </div>
+
+    <!-- SUMMARY STATS -->
+    <div class="stats-row" style="margin-bottom:36px;">
+      <div class="stat-card fade-up"><div class="stat-value">12</div><div class="stat-label">Total rides</div></div>
+      <div class="stat-card fade-up-2"><div class="stat-value" style="color:var(--green);">142 AED</div><div class="stat-label">Saved vs taxis</div></div>
+      <div class="stat-card fade-up-3"><div class="stat-value">0</div><div class="stat-label">Cancelled rides</div></div>
+      <div class="stat-card fade-up-4"><div class="stat-value" style="color:var(--amber);">4.9 ⭐</div><div class="stat-label">Avg rating received</div></div>
+    </div>
+
+    <!-- FILTERS -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;align-items:center;">
+      <span style="color:var(--text3);font-size:0.85rem;">Filter:</span>
+      <button class="filter-btn active" onclick="setFilter(this,'all')">All</button>
+      <button class="filter-btn" onclick="setFilter(this,'completed')">Completed</button>
+      <button class="filter-btn" onclick="setFilter(this,'cancelled')">Cancelled</button>
+      <input type="month" class="form-input" style="width:auto;padding:6px 12px;font-size:0.85rem;" value="2025-02" onchange="showToast('Filter applied','info')" />
+    </div>
+
+    <!-- RIDE LIST -->
+    <div style="display:flex;flex-direction:column;gap:12px;">
+
+      <!-- February -->
+      <p style="font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);padding:4px 0;">February 2025</p>
+
+      <div class="ride-history-card" onclick="toggleReceipt('r1')">
+        <div class="rhc-main">
+          <div style="font-size:1.5rem;">⚡</div>
+          <div style="flex:1;">
+            <p style="font-weight:600;margin-bottom:3px;">Al Majaz → University City</p>
+            <p style="color:var(--text2);font-size:0.85rem;">Thu 20 Feb · 8:42 AM · Fatima K.</p>
+            <div style="display:flex;gap:8px;margin-top:6px;flex-wrap:wrap;">
+              <span class="badge badge-neutral">⛽ Petrol</span>
+              <span class="badge badge-green">Completed</span>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <p style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;">0 AED</p>
+            <p style="color:var(--text3);font-size:0.78rem;margin-bottom:6px;">subscription</p>
+            <div class="stars" style="font-size:0.85rem;">★★★★★</div>
+          </div>
+        </div>
+        <div class="receipt" id="r1" style="display:none;">
+          <div style="height:1px;background:var(--border);margin:16px 0;"></div>
+          <p style="font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);margin-bottom:12px;">Receipt</p>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:0.88rem;">
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text2);">Base fare</span><span>10.00 AED</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text2);">Subscription discount</span><span style="color:var(--green);">−10.00 AED</span></div>
+            <div style="height:1px;background:var(--border);"></div>
+            <div style="display:flex;justify-content:space-between;font-weight:700;"><span>Total paid</span><span>0.00 AED</span></div>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:14px;">
+            <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();showToast('Receipt downloaded','success')">📥 Download receipt</button>
+            <button class="btn btn-ghost btn-sm" onclick="event.stopPropagation();showToast('Report submitted','info')">🚩 Report issue</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="ride-history-card" onclick="toggleReceipt('r2')">
+        <div class="rhc-main">
+          <div style="font-size:1.5rem;">⚡</div>
+          <div style="flex:1;">
+            <p style="font-weight:600;margin-bottom:3px;">Sharjah Corniche → UoS Gate 2</p>
+            <p style="color:var(--text2);font-size:0.85rem;">Wed 19 Feb · 9:05 AM · Maha S.</p>
+            <div style="display:flex;gap:8px;margin-top:6px;">
+              <span class="badge badge-neutral">⚡ Electric</span>
+              <span class="badge badge-green">Completed</span>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <p style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;">0 AED</p>
+            <p style="color:var(--text3);font-size:0.78rem;margin-bottom:6px;">subscription</p>
+            <div class="stars" style="font-size:0.85rem;">★★★★★</div>
+          </div>
+        </div>
+        <div class="receipt" id="r2" style="display:none;">
+          <div style="height:1px;background:var(--border);margin:16px 0;"></div>
+          <p style="font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);margin-bottom:12px;">Receipt</p>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:0.88rem;">
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text2);">Ride fare</span><span>8.00 AED</span></div>
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text2);">Subscription discount</span><span style="color:var(--green);">−8.00 AED</span></div>
+            <div style="height:1px;background:var(--border);"></div>
+            <div style="display:flex;justify-content:space-between;font-weight:700;"><span>Total paid</span><span>0.00 AED</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ride-history-card" onclick="toggleReceipt('r3')">
+        <div class="rhc-main">
+          <div style="font-size:1.5rem;">🚗</div>
+          <div style="flex:1;">
+            <p style="font-weight:600;margin-bottom:3px;">Al Khan → University City</p>
+            <p style="color:var(--text2);font-size:0.85rem;">Mon 17 Feb · 8:55 AM · Layla A.</p>
+            <div style="display:flex;gap:8px;margin-top:6px;">
+              <span class="badge badge-neutral">⛽ Petrol</span>
+              <span class="badge badge-green">Completed</span>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <p style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;">10 AED</p>
+            <p style="color:var(--text3);font-size:0.78rem;margin-bottom:6px;">paid</p>
+            <div class="stars" style="font-size:0.85rem;">★★★★☆</div>
+          </div>
+        </div>
+        <div class="receipt" id="r3" style="display:none;">
+          <div style="height:1px;background:var(--border);margin:16px 0;"></div>
+          <p style="font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);margin-bottom:12px;">Receipt</p>
+          <div style="display:flex;flex-direction:column;gap:8px;font-size:0.88rem;">
+            <div style="display:flex;justify-content:space-between;"><span style="color:var(--text2);">Petrol split</span><span>10.00 AED</span></div>
+            <div style="height:1px;background:var(--border);"></div>
+            <div style="display:flex;justify-content:space-between;font-weight:700;"><span>Total paid</span><span>10.00 AED</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- January header -->
+      <p style="font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text3);padding:12px 0 4px;">January 2025</p>
+
+      <div class="ride-history-card" onclick="toggleReceipt('r4')">
+        <div class="rhc-main">
+          <div style="font-size:1.5rem;">🚗</div>
+          <div style="flex:1;">
+            <p style="font-weight:600;margin-bottom:3px;">Muwaileh → University City</p>
+            <p style="color:var(--text2);font-size:0.85rem;">Fri 31 Jan · 8:30 AM · Reem M.</p>
+            <div style="display:flex;gap:8px;margin-top:6px;">
+              <span class="badge badge-neutral">⛽ Petrol</span>
+              <span class="badge badge-green">Completed</span>
+            </div>
+          </div>
+          <div style="text-align:right;">
+            <p style="font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:700;">10 AED</p>
+            <p style="color:var(--text3);font-size:0.78rem;margin-bottom:6px;">paid</p>
+            <div class="stars" style="font-size:0.85rem;">★★★★★</div>
+          </div>
+        </div>
+        <div class="receipt" id="r4" style="display:none;"></div>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;color:var(--text3);font-size:0.85rem;margin-top:32px;">Showing all 12 rides · <a href="#" style="color:var(--accent2);">Load more</a></p>
+
+  </main>
+</div>
+
+<div class="toast-container"></div>
+<script src="js/main.js"></script>
+<script>
+  function toggleReceipt(id) {
+    const el = document.getElementById(id);
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  }
+  function setFilter(btn, type) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+</script>
+<style>
+  .ride-history-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 20px 24px; cursor: pointer; transition: border-color 0.2s;
+  }
+  .ride-history-card:hover { border-color: var(--border-hover); }
+  .rhc-main { display: flex; align-items: flex-start; gap: 16px; }
+  .filter-btn {
+    padding: 7px 14px; border-radius: 4px;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--text2); font-size: 0.82rem; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .filter-btn:hover, .filter-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+</style>
+</body>
+</html>
