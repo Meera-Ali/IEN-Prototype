@@ -12,7 +12,9 @@
       display: flex;
       flex-direction: column;
       height: calc(100vh - 80px);
-      max-width: 680px;
+      max-width: 700px;
+      width: 100%;
+      margin: 0 auto;
     }
 
     /* ── RIDE HEADER ── */
@@ -20,17 +22,54 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 16px 20px;
+      padding: 18px 20px;
       margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+    .chat-ride-header-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .chat-ride-header-left { display: flex; align-items: center; gap: 12px; }
+    .chat-peer-name { font-weight: 600; font-size: 1rem; margin-bottom: 2px; }
+    .chat-peer-role { font-size: 0.78rem; color: var(--text3); }
+    .chat-ride-header-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0 0 14px;
+    }
+    .chat-ride-route-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .chat-ride-route-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text2);
+      font-weight: 500;
+    }
+    .chat-ride-route-info .route-arrow { color: var(--text3); }
+    .chat-ride-meta {
+      display: flex;
+      align-items: center;
       gap: 16px;
       flex-shrink: 0;
     }
-    .chat-ride-header-left { display: flex; align-items: center; gap: 14px; }
-    .chat-peer-name { font-weight: 600; font-size: 1rem; margin-bottom: 2px; }
-    .chat-ride-route { font-size: 0.83rem; color: var(--text2); }
+    .chat-ride-meta-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 1px;
+    }
+    .chat-ride-meta-label { font-size: 0.72rem; color: var(--text3); }
+    .chat-ride-meta-value { font-size: 0.85rem; font-weight: 600; color: var(--text); }
 
     /* ── MESSAGE THREAD ── */
     .chat-messages {
@@ -224,20 +263,36 @@
 
         <!-- RIDE HEADER -->
         <div class="chat-ride-header fade-up">
-          <div class="chat-ride-header-left">
-            <div class="avatar avatar-md" style="background:#4f46e5;">F</div>
-            <div>
-              <div class="chat-peer-name">Fatima Khalid</div>
-              <div class="chat-ride-route">Al Majaz → University City · Pickup 8:40 AM</div>
+          <div class="chat-ride-header-top">
+            <div class="chat-ride-header-left">
+              <div class="avatar avatar-md" style="background:#4f46e5;">F</div>
+              <div>
+                <div class="chat-peer-name">Fatima Khalid</div>
+                <div class="chat-peer-role">Driver</div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span class="badge badge-green">● Confirmed</span>
+              <button class="btn btn-ghost btn-sm" onclick="endRide()" style="border-color:rgba(239,68,68,0.3);color:var(--red);">End ride</button>
             </div>
           </div>
-          <div style="display:flex;align-items:center;gap:10px;">
-            <span class="badge badge-green">● Confirmed</span>
-            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;">
-              <span style="font-size:0.78rem;color:var(--text3);">ETA campus</span>
-              <span style="font-size:0.88rem;font-weight:600;">~8:58 AM</span>
+          <hr class="chat-ride-header-divider">
+          <div class="chat-ride-route-row">
+            <div class="chat-ride-route-info">
+              <span>Al Majaz</span>
+              <span class="route-arrow">→</span>
+              <span>University City</span>
             </div>
-            <button class="btn btn-ghost btn-sm" onclick="endRide()" style="border-color:rgba(239,68,68,0.3);color:var(--red);">End ride</button>
+            <div class="chat-ride-meta">
+              <div class="chat-ride-meta-item">
+                <span class="chat-ride-meta-label">Pickup</span>
+                <span class="chat-ride-meta-value">8:40 AM</span>
+              </div>
+              <div class="chat-ride-meta-item">
+                <span class="chat-ride-meta-label">ETA campus</span>
+                <span class="chat-ride-meta-value">~8:58 AM</span>
+              </div>
+            </div>
           </div>
         </div>
 
