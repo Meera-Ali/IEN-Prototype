@@ -207,86 +207,104 @@
         </div>
       </div>
 
-      <!-- RIDE HEADER -->
-      <div class="chat-ride-header fade-up">
-        <div class="chat-ride-header-left">
-          <div class="avatar avatar-md" style="background:#4f46e5;">F</div>
-          <div>
-            <div class="chat-peer-name">Fatima Khalid</div>
-            <div class="chat-ride-route">Al Majaz → University City · Pickup 8:40 AM</div>
-          </div>
+      <!-- LOCKED STATE (no confirmed ride) -->
+      <div id="chat-locked" style="display:none;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:40px 20px;text-align:center;">
+        <div style="width:64px;height:64px;background:var(--surface);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="9" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="15" y1="10" x2="15" y2="10"/></svg>
         </div>
-        <div style="display:flex;align-items:center;gap:10px;">
-          <span class="badge badge-green">● Confirmed</span>
-          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;">
-            <span style="font-size:0.78rem;color:var(--text3);">ETA campus</span>
-            <span style="font-size:0.88rem;font-weight:600;">~8:58 AM</span>
-          </div>
+        <div>
+          <h4 style="margin-bottom:8px;color:var(--text);">No active ride</h4>
+          <p style="color:var(--text2);font-size:0.88rem;max-width:320px;line-height:1.6;">Chat becomes available once you've confirmed a ride with a driver. Book a ride to get started.</p>
         </div>
+        <a href="request-ride.html" class="btn btn-primary">Request a ride</a>
       </div>
 
-      <!-- SAFETY BANNER -->
-      <div class="safety-note fade-up">
-        <i data-lucide="alert-triangle" width="15" height="15" stroke-width="2"></i>
-        Keep it ride-related. Contact details (phone numbers, social handles) are not allowed in chat.
-      </div>
+      <!-- ACTIVE CHAT STATE (ride confirmed) -->
+      <div id="chat-active" style="display:none;flex-direction:column;flex:1;overflow:hidden;">
 
-      <!-- MESSAGE THREAD -->
-      <div class="chat-messages" id="chat-messages">
-        <div class="chat-date-sep">Today · 8:02 AM</div>
-
-        <div class="msg-row">
-          <div class="avatar avatar-sm" style="background:#4f46e5;flex-shrink:0;">F</div>
-          <div>
-            <div class="msg-bubble">Hi Sara! I'm on my way. I'll be at your pickup point in about 15 minutes 🚗</div>
-            <div class="msg-time">8:02 AM</div>
+        <!-- RIDE HEADER -->
+        <div class="chat-ride-header fade-up">
+          <div class="chat-ride-header-left">
+            <div class="avatar avatar-md" style="background:#4f46e5;">F</div>
+            <div>
+              <div class="chat-peer-name">Fatima Khalid</div>
+              <div class="chat-ride-route">Al Majaz → University City · Pickup 8:40 AM</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <span class="badge badge-green">● Confirmed</span>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;">
+              <span style="font-size:0.78rem;color:var(--text3);">ETA campus</span>
+              <span style="font-size:0.88rem;font-weight:600;">~8:58 AM</span>
+            </div>
+            <button class="btn btn-ghost btn-sm" onclick="endRide()" style="border-color:rgba(239,68,68,0.3);color:var(--red);">End ride</button>
           </div>
         </div>
 
-        <div class="msg-row mine">
-          <div>
-            <div class="msg-bubble">Great, I'm ready! I'll be waiting outside the building entrance</div>
-            <div class="msg-time" style="text-align:right;">8:03 AM</div>
+        <!-- SAFETY BANNER -->
+        <div class="safety-note fade-up">
+          <i data-lucide="alert-triangle" width="15" height="15" stroke-width="2"></i>
+          Keep it ride-related. Contact details (phone numbers, social handles) are not allowed in chat.
+        </div>
+
+        <!-- MESSAGE THREAD -->
+        <div class="chat-messages" id="chat-messages">
+          <div class="chat-date-sep">Today · 8:02 AM</div>
+
+          <div class="msg-row">
+            <div class="avatar avatar-sm" style="background:#4f46e5;flex-shrink:0;">F</div>
+            <div>
+              <div class="msg-bubble">Hi! I'm on my way. I'll be at your pickup point in about 15 minutes 🚗</div>
+              <div class="msg-time">8:02 AM</div>
+            </div>
+          </div>
+
+          <div class="msg-row mine">
+            <div>
+              <div class="msg-bubble">Great, I'm ready! I'll be waiting outside the building entrance</div>
+              <div class="msg-time" style="text-align:right;">8:03 AM</div>
+            </div>
+          </div>
+
+          <div class="msg-row">
+            <div class="avatar avatar-sm" style="background:#4f46e5;flex-shrink:0;">F</div>
+            <div>
+              <div class="msg-bubble">Perfect. I'm driving a white Toyota Camry, plate SHJ 4821</div>
+              <div class="msg-time">8:04 AM</div>
+            </div>
+          </div>
+
+          <div class="msg-row mine">
+            <div>
+              <div class="msg-bubble">Got it, thanks! See you soon 👍</div>
+              <div class="msg-time" style="text-align:right;">8:04 AM</div>
+            </div>
           </div>
         </div>
 
-        <div class="msg-row">
-          <div class="avatar avatar-sm" style="background:#4f46e5;flex-shrink:0;">F</div>
-          <div>
-            <div class="msg-bubble">Perfect. I'm driving a white Toyota Camry, plate SHJ 4821</div>
-            <div class="msg-time">8:04 AM</div>
-          </div>
+        <!-- QUICK REPLIES -->
+        <div class="quick-replies" id="quick-replies">
+          <button class="quick-reply" onclick="sendQuick(this)">I'm outside ✅</button>
+          <button class="quick-reply" onclick="sendQuick(this)">On my way 🚶</button>
+          <button class="quick-reply" onclick="sendQuick(this)">2 minutes ⏱️</button>
+          <button class="quick-reply" onclick="sendQuick(this)">Running late, sorry!</button>
+          <button class="quick-reply" onclick="sendQuick(this)">Thanks for the ride!</button>
         </div>
 
-        <div class="msg-row mine">
-          <div>
-            <div class="msg-bubble">Got it, thanks! See you soon 👍</div>
-            <div class="msg-time" style="text-align:right;">8:04 AM</div>
-          </div>
+        <!-- INPUT BAR -->
+        <div class="chat-input-bar">
+          <textarea
+            class="chat-input"
+            id="chat-input"
+            placeholder="Type a message…"
+            rows="1"
+            onkeydown="handleKey(event)"
+            oninput="autoResize(this)"
+          ></textarea>
+          <button class="chat-send" onclick="sendMessage()" aria-label="Send message"><i data-lucide="send" width="16" height="16" stroke-width="2"></i></button>
         </div>
-      </div>
 
-      <!-- QUICK REPLIES -->
-      <div class="quick-replies" id="quick-replies">
-        <button class="quick-reply" onclick="sendQuick(this)">I'm outside ✅</button>
-        <button class="quick-reply" onclick="sendQuick(this)">On my way 🚶</button>
-        <button class="quick-reply" onclick="sendQuick(this)">2 minutes ⏱️</button>
-        <button class="quick-reply" onclick="sendQuick(this)">Running late, sorry!</button>
-        <button class="quick-reply" onclick="sendQuick(this)">Thanks for the ride!</button>
-      </div>
-
-      <!-- INPUT BAR -->
-      <div class="chat-input-bar">
-        <textarea
-          class="chat-input"
-          id="chat-input"
-          placeholder="Type a message…"
-          rows="1"
-          onkeydown="handleKey(event)"
-          oninput="autoResize(this)"
-        ></textarea>
-        <button class="chat-send" onclick="sendMessage()" aria-label="Send message"><i data-lucide="send" width="16" height="16" stroke-width="2"></i></button>
-      </div>
+      </div><!-- /chat-active -->
 
     </div>
   </main>
@@ -295,6 +313,25 @@
 <div class="toast-container"></div>
 <script src="js/main.js"></script>
 <script>
+  // Show correct state on load
+  const confirmed = localStorage.getItem('rideConfirmed') === 'true';
+  const activeEl = document.getElementById('chat-active');
+  const lockedEl = document.getElementById('chat-locked');
+  if (confirmed) {
+    activeEl.style.display = 'flex';
+    lockedEl.style.display = 'none';
+  } else {
+    activeEl.style.display = 'none';
+    lockedEl.style.display = 'flex';
+  }
+
+  function endRide() {
+    if (!confirm('End this ride? Chat will close.')) return;
+    localStorage.removeItem('rideConfirmed');
+    showToast('Ride ended. Please rate your driver.', 'info');
+    setTimeout(() => window.location.href = 'rider-dashboard.html', 1800);
+  }
+
   const messages = document.getElementById('chat-messages');
   const input = document.getElementById('chat-input');
 

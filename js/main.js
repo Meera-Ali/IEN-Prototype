@@ -156,6 +156,19 @@ function initIcons() {
   lucide.createIcons();
 }
 
+// ─── CHAT LINK INDICATOR ───
+(function () {
+  if (localStorage.getItem('rideConfirmed') !== 'true') return;
+  document.addEventListener('DOMContentLoaded', () => {
+    const chatLink = document.querySelector('.sidebar-link[href="chat.html"]');
+    if (!chatLink) return;
+    const dot = document.createElement('span');
+    dot.style.cssText = 'width:7px;height:7px;border-radius:50%;background:var(--green);margin-left:auto;flex-shrink:0;box-shadow:0 0 6px rgba(34,197,94,0.6);';
+    chatLink.style.setProperty('justify-content', 'flex-start');
+    chatLink.appendChild(dot);
+  });
+})();
+
 // ─── ACTIVE NAV + THEME TOGGLE + NAME INJECTION ───
 document.addEventListener('DOMContentLoaded', () => {
   const path = window.location.pathname.split('/').pop();

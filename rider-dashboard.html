@@ -73,7 +73,9 @@
     <!-- ACTIVE RIDE -->
     <div style="margin-bottom:36px;">
       <div class="section-heading">Active Request</div>
-      <div style="background:var(--surface);border:1px solid rgba(108,99,255,0.3);border-radius:var(--radius);padding:24px;display:flex;gap:20px;align-items:center;">
+
+      <!-- Searching state (shown when no confirmed ride) -->
+      <div id="ride-searching" style="background:var(--surface);border:1px solid rgba(108,99,255,0.3);border-radius:var(--radius);padding:24px;display:flex;gap:20px;align-items:center;">
         <div style="color:var(--accent);display:flex;"><i data-lucide="search" width="30" height="30" stroke-width="1.5"></i></div>
         <div style="flex:1;">
           <p style="font-weight:600;margin-bottom:4px;">Searching for drivers…</p>
@@ -83,6 +85,25 @@
         <div>
           <span class="badge badge-accent" style="margin-bottom:10px;display:flex;">Waiting</span>
           <button class="btn btn-danger btn-sm" onclick="cancelRide()">Cancel</button>
+        </div>
+      </div>
+
+      <!-- Confirmed state (shown after booking is confirmed) -->
+      <div id="ride-confirmed-card" style="display:none;background:var(--surface);border:1px solid rgba(34,197,94,0.35);border-radius:var(--radius);padding:24px;gap:20px;align-items:center;">
+        <div style="display:flex;gap:20px;align-items:center;width:100%;">
+          <div class="avatar avatar-md" style="background:#4f46e5;flex-shrink:0;">F</div>
+          <div style="flex:1;">
+            <p style="font-weight:600;margin-bottom:4px;">Ride confirmed with <span class="driver-name" data-female="Fatima Khalid" data-male="Faris Khalid">Fatima Khalid</span></p>
+            <p style="color:var(--text2);font-size:0.88rem;">Al Majaz → University City · Pickup 8:40 AM</p>
+            <p style="color:var(--text3);font-size:0.82rem;margin-top:4px;">White Toyota Camry · Plate SHJ 4821</p>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+            <span class="badge badge-green">● Confirmed</span>
+            <a href="chat.html" class="btn btn-primary btn-sm" style="display:flex;align-items:center;gap:6px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              Open chat
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -140,6 +161,14 @@
 <div class="toast-container"></div>
 <script src="js/main.js"></script>
 <script>
+  // Switch between searching and confirmed ride states
+  if (localStorage.getItem('rideConfirmed') === 'true') {
+    document.getElementById('ride-searching').style.display = 'none';
+    const card = document.getElementById('ride-confirmed-card');
+    card.style.display = 'flex';
+    card.style.flexDirection = 'column';
+  }
+
   function cancelRide() {
     if (confirm('Cancel your current ride request?')) showToast('Ride request cancelled', 'info');
   }
