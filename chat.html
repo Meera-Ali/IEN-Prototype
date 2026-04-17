@@ -214,23 +214,15 @@
 
   <aside class="sidebar">
     <div class="sidebar-logo">Meshwar <span>مشوار</span></div>
-    <nav class="sidebar-nav">
-      <a href="rider-dashboard.html" class="sidebar-link"><span class="icon">🏠</span> Dashboard</a>
-      <a href="request-ride.html" class="sidebar-link"><span class="icon">➕</span> Request Ride</a>
-      <a href="chat.html" class="sidebar-link active"><span class="icon">💬</span> Ride Chat</a>
-      <a href="ride-history.html" class="sidebar-link"><span class="icon">🕐</span> Ride History</a>
-      <a href="subscription.html" class="sidebar-link"><span class="icon">🎟️</span> Subscription</a>
-      <div class="sidebar-section-label">Account</div>
-      <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> My Profile</a>
-      <a href="safety.html" class="sidebar-link"><span class="icon">🛡️</span> Safety</a>
-      <a href="login.html" class="sidebar-link"><span class="icon">🚪</span> Log out</a>
+    <nav class="sidebar-nav" id="sidebar-nav">
+      <!-- injected by JS based on role -->
     </nav>
     <div class="sidebar-bottom">
       <div class="sidebar-user">
-        <div class="avatar avatar-sm">S</div>
+        <div class="avatar avatar-sm" id="sidebar-avatar">S</div>
         <div class="sidebar-user-info">
-          <div class="sidebar-user-name">——</div>
-          <div class="sidebar-user-role">Rider · Subscribed</div>
+          <div class="sidebar-user-name" id="sidebar-uname">——</div>
+          <div class="sidebar-user-role" id="sidebar-urole">Rider · Subscribed</div>
         </div>
       </div>
     </div>
@@ -255,11 +247,11 @@
         <div style="width:64px;height:64px;background:var(--surface);border:1px solid var(--border);border-radius:50%;display:flex;align-items:center;justify-content:center;">
           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="9" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="15" y1="10" x2="15" y2="10"/></svg>
         </div>
-        <div>
+        <div id="locked-text">
           <h4 style="margin-bottom:8px;color:var(--text);">No active ride</h4>
           <p style="color:var(--text2);font-size:0.88rem;max-width:320px;line-height:1.6;">Chat becomes available once you've confirmed a ride with a driver. Book a ride to get started.</p>
         </div>
-        <a href="request-ride.html" class="btn btn-primary">Request a ride</a>
+        <a id="locked-cta" href="request-ride.html" class="btn btn-primary">Request a ride</a>
       </div>
 
       <!-- ACTIVE CHAT STATE (ride confirmed) -->
@@ -269,10 +261,10 @@
         <div class="chat-ride-header fade-up">
           <div class="chat-ride-header-top">
             <div class="chat-ride-header-left">
-              <div class="avatar avatar-md" style="background:#4f46e5;">F</div>
+              <div class="avatar avatar-md" id="chat-peer-avatar" style="background:#4f46e5;">F</div>
               <div>
-                <div class="chat-peer-name">Fatima Khalid</div>
-                <div class="chat-peer-role">Driver</div>
+                <div class="chat-peer-name" id="chat-peer-name">Fatima Khalid</div>
+                <div class="chat-peer-role" id="chat-peer-role">Driver</div>
               </div>
             </div>
             <span class="badge badge-green">Confirmed</span>
@@ -287,11 +279,11 @@
             <div class="chat-ride-meta">
               <div class="chat-ride-meta-item">
                 <span class="chat-ride-meta-label">Pickup</span>
-                <span class="chat-ride-meta-value">8:40 AM</span>
+                <span class="chat-ride-meta-value" id="chat-pickup">8:40 AM</span>
               </div>
               <div class="chat-ride-meta-item">
                 <span class="chat-ride-meta-label">ETA campus</span>
-                <span class="chat-ride-meta-value">~8:58 AM</span>
+                <span class="chat-ride-meta-value" id="chat-eta">~8:58 AM</span>
               </div>
             </div>
           </div>
@@ -311,7 +303,7 @@
           <div class="chat-date-sep">Today · 8:02 AM</div>
 
           <div class="msg-row">
-            <div class="avatar avatar-sm" style="background:#4f46e5;flex-shrink:0;">F</div>
+            <div class="avatar avatar-sm peer-avatar-seed" style="background:#4f46e5;flex-shrink:0;">F</div>
             <div class="msg-inner">
               <div class="msg-bubble">Hi! I'm on my way. I'll be at your pickup point in about 15 minutes 🚗</div>
               <div class="msg-time">8:02 AM</div>
@@ -326,9 +318,9 @@
           </div>
 
           <div class="msg-row">
-            <div class="avatar avatar-sm" style="background:#4f46e5;flex-shrink:0;">F</div>
+            <div class="avatar avatar-sm peer-avatar-seed" style="background:#4f46e5;flex-shrink:0;">F</div>
             <div class="msg-inner">
-              <div class="msg-bubble">Perfect. I'm driving a white Toyota Camry, plate SHJ 4821</div>
+              <div class="msg-bubble peer-car-msg">Perfect. I'm driving a white Toyota Camry, plate SHJ 4821</div>
               <div class="msg-time">8:04 AM</div>
             </div>
           </div>
@@ -372,7 +364,58 @@
 <div class="toast-container"></div>
 <script src="js/main.js"></script>
 <script>
-  // Show correct state on load
+  // ── Role & sidebar ──────────────────────────────────────────
+  const role = localStorage.getItem('meshwar_role') || 'rider';
+  const isDriver = role === 'driver';
+  const nav = document.getElementById('sidebar-nav');
+  if (isDriver) {
+    nav.innerHTML = `
+      <a href="driver-dashboard.html" class="sidebar-link"><span class="icon">🏠</span> Dashboard</a>
+      <a href="ride-accept.html" class="sidebar-link"><span class="icon">🔍</span> Browse Requests</a>
+      <a href="chat.html" class="sidebar-link active"><span class="icon">💬</span> Ride Chat</a>
+      <a href="ride-history.html" class="sidebar-link"><span class="icon">🕐</span> Ride History</a>
+      <div class="sidebar-section-label">Account</div>
+      <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> My Profile</a>
+      <a href="safety.html" class="sidebar-link"><span class="icon">🛡️</span> Safety</a>
+      <a href="login.html" class="sidebar-link"><span class="icon">🚪</span> Log out</a>`;
+    document.getElementById('sidebar-urole').textContent = 'Driver · ⛽ Petrol';
+    document.getElementById('sidebar-avatar').style.background = 'var(--green)';
+  } else {
+    nav.innerHTML = `
+      <a href="rider-dashboard.html" class="sidebar-link"><span class="icon">🏠</span> Dashboard</a>
+      <a href="request-ride.html" class="sidebar-link"><span class="icon">➕</span> Request Ride</a>
+      <a href="chat.html" class="sidebar-link active"><span class="icon">💬</span> Ride Chat</a>
+      <a href="ride-history.html" class="sidebar-link"><span class="icon">🕐</span> Ride History</a>
+      <a href="subscription.html" class="sidebar-link"><span class="icon">🎟️</span> Subscription</a>
+      <div class="sidebar-section-label">Account</div>
+      <a href="profile.html" class="sidebar-link"><span class="icon">👤</span> My Profile</a>
+      <a href="safety.html" class="sidebar-link"><span class="icon">🛡️</span> Safety</a>
+      <a href="login.html" class="sidebar-link"><span class="icon">🚪</span> Log out</a>`;
+  }
+
+  // ── Peer info from localStorage ──────────────────────────────
+  const peerName   = localStorage.getItem('chatDriverName')   || (isDriver ? 'Rider' : 'Fatima Khalid');
+  const peerInit   = localStorage.getItem('chatDriverInit')   || (isDriver ? 'R' : 'F');
+  const peerBg     = localStorage.getItem('chatDriverBg')     || '#4f46e5';
+  const peerPickup = localStorage.getItem('chatDriverPickup') || '8:40 AM est.';
+  const peerEta    = localStorage.getItem('chatDriverEta')    || '~8:58 AM';
+  const peerCar    = localStorage.getItem('chatDriverCar')    || 'Toyota Camry 2022';
+  const peerPlate  = localStorage.getItem('chatDriverPlate')  || 'SHJ 4821';
+
+  document.getElementById('chat-peer-name').textContent    = peerName;
+  document.getElementById('chat-peer-role').textContent    = isDriver ? 'Rider' : 'Driver';
+  document.getElementById('chat-peer-avatar').textContent  = peerInit;
+  document.getElementById('chat-peer-avatar').style.background = peerBg;
+  document.getElementById('chat-pickup').textContent       = peerPickup.replace(' est.', '');
+  document.getElementById('chat-eta').textContent          = peerEta;
+  document.querySelectorAll('.peer-avatar-seed').forEach(el => {
+    el.textContent = peerInit;
+    el.style.background = peerBg;
+  });
+  const carMsg = document.querySelector('.peer-car-msg');
+  if (carMsg) carMsg.textContent = `Perfect. I'm driving a ${peerCar}, plate ${peerPlate}`;
+
+  // ── Show correct state on load ───────────────────────────────
   const confirmed = localStorage.getItem('rideConfirmed') === 'true';
   const activeEl = document.getElementById('chat-active');
   const lockedEl = document.getElementById('chat-locked');
@@ -382,13 +425,21 @@
   } else {
     activeEl.style.display = 'none';
     lockedEl.style.display = 'flex';
+    if (isDriver) {
+      document.getElementById('locked-text').innerHTML = `
+        <h4 style="margin-bottom:8px;color:var(--text);">No active ride</h4>
+        <p style="color:var(--text2);font-size:0.88rem;max-width:320px;line-height:1.6;">Accept a ride request to start chatting with your rider.</p>`;
+      const cta = document.getElementById('locked-cta');
+      cta.href = 'ride-accept.html';
+      cta.textContent = 'Browse requests';
+    }
   }
 
   function endRide() {
     if (!confirm('End this ride? Chat will close.')) return;
     localStorage.removeItem('rideConfirmed');
     showToast('Ride ended. Please rate your driver.', 'info');
-    setTimeout(() => window.location.href = 'rider-dashboard.html', 1800);
+    setTimeout(() => window.location.href = isDriver ? 'driver-dashboard.html' : 'rider-dashboard.html', 1800);
   }
 
   const messages = document.getElementById('chat-messages');
@@ -409,8 +460,8 @@
     if (!mine) {
       const av = document.createElement('div');
       av.className = 'avatar avatar-sm';
-      av.style.cssText = 'background:#4f46e5;flex-shrink:0;';
-      av.textContent = 'F';
+      av.style.cssText = `background:${peerBg};flex-shrink:0;`;
+      av.textContent = peerInit;
       row.appendChild(av);
     }
 

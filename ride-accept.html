@@ -176,6 +176,10 @@
     showToast('Request skipped', 'info');
   }
   function acceptRequest(id) {
+    localStorage.setItem('rideConfirmed', 'true');
+    localStorage.removeItem('chatDriverName');
+    localStorage.removeItem('chatDriverInit');
+    localStorage.removeItem('chatDriverBg');
     showToast('Ride accepted! Opening chat with your rider…', 'success');
     setTimeout(() => window.location.href = 'chat.html', 1500);
   }

@@ -92,6 +92,7 @@
     const derived = email.split('@')[0].split('.')[0];
     const name = derived.charAt(0).toUpperCase() + derived.slice(1);
     localStorage.setItem('meshwar_name', name);
+    localStorage.setItem('meshwar_role', role);
     showToast('Signing you in…', 'info');
     setTimeout(() => {
       window.location.href = role === 'driver' ? 'driver-dashboard.html' : 'rider-dashboard.html';

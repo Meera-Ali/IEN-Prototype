@@ -167,6 +167,33 @@
 <div class="toast-container"></div>
 <script src="js/main.js"></script>
 <script>
+  const driverData = {
+    1: { nameF:'Fatima Khalid', nameM:'Faris Khalid', initF:'F', initM:'F', avatarBg:'#4f46e5', rating:'4.9', rides:'34', fuel:'Petrol', car:'Toyota Camry 2022', plate:'SHJ 4821', pickup:'8:40 AM est.', eta:'~8:58 AM', exp:'3 yrs experience', price:'10.00' },
+    2: { nameF:'Mariam Hassan', nameM:'Omar Hassan',  initF:'M', initM:'O', avatarBg:'#16a34a', rating:'4.8', rides:'61', fuel:'Electric', car:'Tesla Model 3 2023', plate:'SHJ 2254', pickup:'8:55 AM est.', eta:'~9:13 AM', exp:'5+ yrs experience', price:'8.00' },
+    3: { nameF:'Layla Ahmed',   nameM:'Khalid Ahmed', initF:'L', initM:'K', avatarBg:'#7c3aed', rating:'4.3', rides:'12', fuel:'Petrol', car:'Honda Accord 2020', plate:'AJM 7714', pickup:'9:10 AM est.', eta:'~9:28 AM', exp:'1–2 yrs experience', price:'10.00' }
+  };
+
+  function selectDriver(id) {
+    const gender = localStorage.getItem('meshwar_gender') || 'female';
+    const d = driverData[id];
+    const name = gender === 'male' ? d.nameM : d.nameF;
+    const init = gender === 'male' ? d.initM : d.initF;
+    localStorage.setItem('chatDriverId',     id);
+    localStorage.setItem('chatDriverName',   name);
+    localStorage.setItem('chatDriverInit',   init);
+    localStorage.setItem('chatDriverBg',     d.avatarBg);
+    localStorage.setItem('chatDriverRating', d.rating);
+    localStorage.setItem('chatDriverRides',  d.rides);
+    localStorage.setItem('chatDriverFuel',   d.fuel);
+    localStorage.setItem('chatDriverCar',    d.car);
+    localStorage.setItem('chatDriverPlate',  d.plate);
+    localStorage.setItem('chatDriverPickup', d.pickup);
+    localStorage.setItem('chatDriverEta',    d.eta);
+    localStorage.setItem('chatDriverExp',    d.exp);
+    localStorage.setItem('chatDriverPrice',  d.price);
+    window.location.href = 'ride-confirm.html';
+  }
+
   (function () {
     const gender = localStorage.getItem('meshwar_gender') || 'female';
     document.querySelectorAll('.driver-match-name').forEach(el => {

@@ -55,12 +55,12 @@
             <h3 class="confirm-driver-name" data-female="Fatima Khalid" data-male="Faris Khalid" style="font-size:1.4rem;margin-bottom:4px;">Fatima Khalid</h3>
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
               <div class="stars">★★★★★</div>
-              <span style="color:var(--text2);font-size:0.88rem;">4.9 · 34 rides completed</span>
+              <span class="confirm-driver-rating" style="color:var(--text2);font-size:0.88rem;">4.9 · 34 rides completed</span>
             </div>
             <div style="display:flex;gap:8px;flex-wrap:wrap;">
-              <span class="badge badge-neutral">⛽ Petrol</span>
+              <span class="badge badge-neutral confirm-fuel-badge">⛽ Petrol</span>
               <span class="badge badge-green">✓ Verified driver</span>
-              <span class="badge badge-accent">3 yrs experience</span>
+              <span class="badge badge-accent confirm-exp-badge">3 yrs experience</span>
             </div>
           </div>
         </div>
@@ -68,19 +68,19 @@
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:20px;background:var(--bg2);border-radius:var(--radius-sm);margin-bottom:20px;">
           <div>
             <p style="font-size:0.78rem;color:var(--text3);text-transform:uppercase;font-weight:600;letter-spacing:0.08em;margin-bottom:4px;">Car</p>
-            <p style="font-size:0.95rem;font-weight:500;">Toyota Camry 2022</p>
+            <p class="confirm-car" style="font-size:0.95rem;font-weight:500;">Toyota Camry 2022</p>
           </div>
           <div>
             <p style="font-size:0.78rem;color:var(--text3);text-transform:uppercase;font-weight:600;letter-spacing:0.08em;margin-bottom:4px;">Plate</p>
-            <p style="font-size:0.95rem;font-weight:500;">SHJ 4821</p>
+            <p class="confirm-plate" style="font-size:0.95rem;font-weight:500;">SHJ 4821</p>
           </div>
           <div>
             <p style="font-size:0.78rem;color:var(--text3);text-transform:uppercase;font-weight:600;letter-spacing:0.08em;margin-bottom:4px;">Pickup</p>
-            <p style="font-size:0.95rem;font-weight:500;">8:40 AM est.</p>
+            <p class="confirm-pickup" style="font-size:0.95rem;font-weight:500;">8:40 AM est.</p>
           </div>
           <div>
             <p style="font-size:0.78rem;color:var(--text3);text-transform:uppercase;font-weight:600;letter-spacing:0.08em;margin-bottom:4px;">ETA at campus</p>
-            <p style="font-size:0.95rem;font-weight:500;">~8:58 AM</p>
+            <p class="confirm-eta" style="font-size:0.95rem;font-weight:500;">~8:58 AM</p>
           </div>
         </div>
 
@@ -117,11 +117,11 @@
         <div style="display:flex;flex-direction:column;gap:10px;">
           <div style="display:flex;justify-content:space-between;font-size:0.9rem;">
             <span style="color:var(--text2);">Base petrol split</span>
-            <span>10.00 AED</span>
+            <span class="confirm-price">10.00 AED</span>
           </div>
           <div style="display:flex;justify-content:space-between;font-size:0.9rem;">
             <span style="color:var(--text2);">Monthly subscription discount</span>
-            <span style="color:var(--green);">−10.00 AED</span>
+            <span class="confirm-discount" style="color:var(--green);">−10.00 AED</span>
           </div>
           <div style="height:1px;background:var(--border);"></div>
           <div style="display:flex;justify-content:space-between;font-weight:700;">
@@ -152,13 +152,43 @@
 <script src="js/main.js"></script>
 <script>
   (function () {
-    const gender = localStorage.getItem('meshwar_gender') || 'female';
-    document.querySelectorAll('.confirm-driver-name').forEach(el => {
-      el.textContent = gender === 'male' ? el.dataset.male : el.dataset.female;
-    });
+    const name   = localStorage.getItem('chatDriverName')   || 'Fatima Khalid';
+    const init   = localStorage.getItem('chatDriverInit')   || 'F';
+    const bg     = localStorage.getItem('chatDriverBg')     || '#4f46e5';
+    const rating = localStorage.getItem('chatDriverRating') || '4.9';
+    const rides  = localStorage.getItem('chatDriverRides')  || '34';
+    const fuel   = localStorage.getItem('chatDriverFuel')   || 'Petrol';
+    const car    = localStorage.getItem('chatDriverCar')    || 'Toyota Camry 2022';
+    const plate  = localStorage.getItem('chatDriverPlate')  || 'SHJ 4821';
+    const pickup = localStorage.getItem('chatDriverPickup') || '8:40 AM est.';
+    const eta    = localStorage.getItem('chatDriverEta')    || '~8:58 AM';
+    const exp    = localStorage.getItem('chatDriverExp')    || '3 yrs experience';
+    const price  = localStorage.getItem('chatDriverPrice')  || '10.00';
+    const fuelIcon = fuel === 'Electric' ? '⚡' : '⛽';
+
+    document.querySelectorAll('.confirm-driver-name').forEach(el => el.textContent = name);
     document.querySelectorAll('.confirm-driver-avatar').forEach(el => {
-      el.textContent = gender === 'male' ? el.dataset.male : el.dataset.female;
+      el.textContent = init;
+      el.style.background = bg;
     });
+    const ratingEl = document.querySelector('.confirm-driver-rating');
+    if (ratingEl) ratingEl.textContent = rating + ' · ' + rides + ' rides completed';
+    const fuelBadge = document.querySelector('.confirm-fuel-badge');
+    if (fuelBadge) fuelBadge.textContent = fuelIcon + ' ' + fuel;
+    const expBadge = document.querySelector('.confirm-exp-badge');
+    if (expBadge) expBadge.textContent = exp;
+    const carEl = document.querySelector('.confirm-car');
+    if (carEl) carEl.textContent = car;
+    const plateEl = document.querySelector('.confirm-plate');
+    if (plateEl) plateEl.textContent = plate;
+    const pickupEl = document.querySelector('.confirm-pickup');
+    if (pickupEl) pickupEl.textContent = pickup;
+    const etaEl = document.querySelector('.confirm-eta');
+    if (etaEl) etaEl.textContent = eta;
+    const priceEl = document.querySelector('.confirm-price');
+    if (priceEl) priceEl.textContent = price + ' AED';
+    const discountEl = document.querySelector('.confirm-discount');
+    if (discountEl) discountEl.textContent = '−' + price + ' AED';
   })();
 
   function confirmRide() {
