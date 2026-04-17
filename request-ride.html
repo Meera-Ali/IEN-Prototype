@@ -56,7 +56,7 @@
           <label class="form-label">Pickup Location</label>
           <div style="position:relative;">
             <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:1.1rem;">📍</span>
-            <input type="text" class="form-input" placeholder="e.g. Al Majaz, Sharjah" style="padding-left:44px;" id="pickup-input" oninput="suggestLocations(this.value)" />
+            <input type="text" class="form-input" placeholder="e.g. Al Majaz, Sharjah" style="padding-left:44px;" id="pickup-input" oninput="suggestLocations(this.value);checkEstimate();" />
           </div>
           <span class="form-hint">Enter a neighbourhood, landmark, or address</span>
           <div id="location-suggestions" style="display:none;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-top:4px;"></div>
@@ -66,7 +66,7 @@
           <label class="form-label">Destination / Campus</label>
           <div style="position:relative;">
             <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:1.1rem;">🎓</span>
-            <select class="form-input form-select" style="padding-left:44px;">
+            <select class="form-input form-select" style="padding-left:44px;" id="campus-select" onchange="checkEstimate()">
               <option value="">Select your campus gate</option>
               <option>University City – Main Gate</option>
               <option>University City – Gate 2</option>
@@ -114,7 +114,7 @@
         </div>
 
         <!-- COST ESTIMATE -->
-        <div style="background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px 20px;">
+        <div id="cost-estimate" style="display:none;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px 20px;">
           <p style="font-size:0.82rem;color:var(--text3);margin-bottom:10px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Estimated cost</p>
           <div style="display:flex;justify-content:space-between;align-items:center;">
             <div>
@@ -153,6 +153,12 @@
   function pickLocation(loc) {
     document.getElementById('pickup-input').value = loc;
     document.getElementById('location-suggestions').style.display = 'none';
+    checkEstimate();
+  }
+  function checkEstimate() {
+    const pickup = document.getElementById('pickup-input').value.trim();
+    const campus = document.getElementById('campus-select').value;
+    document.getElementById('cost-estimate').style.display = (pickup && campus) ? 'block' : 'none';
   }
   function selectCarPref(v) {
     ['any','petrol','electric'].forEach(k => {

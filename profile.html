@@ -52,11 +52,11 @@
         </div>
         <div style="flex:1;">
           <h2 style="font-size:1.8rem;margin-bottom:4px;" id="profile-name">——</h2>
-          <p style="color:var(--text2);margin-bottom:10px;">University of Sharjah · 2nd Year</p>
+          <p style="color:var(--text2);margin-bottom:10px;" id="profile-sub">—</p>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">
             <span class="badge badge-green">✓ Verified student</span>
             <span class="badge badge-accent">🎟️ Subscribed</span>
-            <span class="badge badge-neutral">👩‍🎓 Female</span>
+            <span class="badge badge-neutral" id="gender-badge">👩‍🎓 Female</span>
           </div>
         </div>
         <div style="text-align:center;">
@@ -82,13 +82,14 @@
             </div>
             <div class="form-group">
               <label class="form-label">Email</label>
-              <input type="email" class="form-input" value="sara.a@sharjah.ac.ae" disabled />
+              <input type="email" class="form-input" id="f-email" value="" disabled />
             </div>
             <div class="form-group">
               <label class="form-label">Year of Study</label>
               <select class="form-input form-select" id="f-year" disabled>
+                <option value="">— Not set —</option>
                 <option>1st Year</option>
-                <option selected>2nd Year</option>
+                <option>2nd Year</option>
                 <option>3rd Year</option>
                 <option>4th Year</option>
                 <option>Postgraduate</option>
@@ -164,6 +165,22 @@
 <div class="toast-container"></div>
 <script src="js/main.js"></script>
 <script>
+  const gender = localStorage.getItem('meshwar_gender');
+  if (gender === 'male') document.getElementById('gender-badge').textContent = '👨‍🎓 Male';
+  const savedEmail = localStorage.getItem('meshwar_email');
+  if (savedEmail) document.getElementById('f-email').value = savedEmail;
+
+  const savedYear = localStorage.getItem('meshwar_year');
+  if (savedYear) document.getElementById('f-year').value = savedYear;
+
+  function updateProfileSub() {
+    const uni = document.getElementById('f-uni').value.trim();
+    const yr = document.getElementById('f-year').value;
+    const parts = [uni, yr].filter(Boolean);
+    document.getElementById('profile-sub').textContent = parts.length ? parts.join(' · ') : '—';
+  }
+  updateProfileSub();
+
   let editing = false;
   function toggleEdit() {
     editing = true;
@@ -178,6 +195,9 @@
     document.getElementById('save-row').style.display = 'none';
   }
   function saveProfile() {
+    localStorage.setItem('meshwar_year', document.getElementById('f-year').value);
+    localStorage.setItem('meshwar_uni', document.getElementById('f-uni').value.trim());
+    updateProfileSub();
     cancelEdit();
     showToast('Profile updated!', 'success');
   }

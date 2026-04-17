@@ -189,6 +189,10 @@
     const isDriver = document.getElementById('ro-driver').classList.contains('selected');
     const firstName = document.getElementById('firstname-input').value.trim();
     if (firstName) localStorage.setItem('meshwar_name', firstName);
+    const email = document.getElementById('email-input').value.trim();
+    if (email) localStorage.setItem('meshwar_email', email);
+    const gender = document.getElementById('go-f').classList.contains('selected') ? 'female' : 'male';
+    localStorage.setItem('meshwar_gender', gender);
     showToast('Account created! Redirecting…', 'success');
     setTimeout(() => {
       window.location.href = isDriver ? 'signup-driver.html' : 'rider-dashboard.html';

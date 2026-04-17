@@ -1,5 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
 
+/* ─── GLOBAL RESETS ─── */
+p { margin-bottom: 0; }
+ul, ol { padding-left: 0; margin-bottom: 0; }
+h1, h2, h3, h4, h5, h6 { margin-bottom: 0; }
+a { text-decoration: none; }
+label { margin-bottom: 0; font-weight: inherit; }
+
 :root {
   --bg: #0a0a0f;
   --bg2: #111118;
@@ -389,6 +396,14 @@ input, select, textarea { font-family: inherit; }
   .page-header { padding: 40px 0 28px; }
   .card { padding: 20px; }
   .card-lg { padding: 24px; }
+}
+
+/* ─── LAPTOP (992px – 1280px) ─── */
+@media(min-width: 992px) and (max-width: 1280px) {
+  .container { padding: 0 32px; }
+  .dash-main { padding: 28px 32px; }
+  .hero-title { font-size: clamp(2.4rem, 5vw, 4rem); }
+  .section-title { font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
 }
 
 /* ─── ANIMATIONS ─── */

@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meshwar مشوار — Student Carpooling, Reimagined</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/index.css" />
 </head>
@@ -11,14 +12,26 @@
 
 <nav class="nav">
   <a href="index.html" class="nav-logo">Meshwar <span>مشوار</span></a>
-  <div class="nav-links">
+  <div class="nav-links d-none d-lg-flex">
     <a href="#how" class="nav-link">How it works</a>
     <a href="#pricing" class="nav-link">Pricing</a>
     <a href="#safety" class="nav-link">Safety</a>
     <a href="login.html" class="nav-link">Log in</a>
     <a href="signup.html" class="btn btn-primary btn-sm">Get started</a>
   </div>
+  <button class="d-lg-none btn btn-ghost btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav" aria-expanded="false">
+    <i data-lucide="menu" width="20" height="20"></i>
+  </button>
 </nav>
+<div class="collapse d-lg-none" id="mobileNav" style="position:fixed;top:65px;left:0;right:0;z-index:99;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:12px 24px;">
+  <div style="display:flex;flex-direction:column;gap:4px;">
+    <a href="#how" class="nav-link" data-bs-toggle="collapse" data-bs-target="#mobileNav">How it works</a>
+    <a href="#pricing" class="nav-link" data-bs-toggle="collapse" data-bs-target="#mobileNav">Pricing</a>
+    <a href="#safety" class="nav-link" data-bs-toggle="collapse" data-bs-target="#mobileNav">Safety</a>
+    <a href="login.html" class="nav-link">Log in</a>
+    <a href="signup.html" class="btn btn-primary btn-sm" style="margin-top:8px;width:fit-content;">Get started</a>
+  </div>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -75,26 +88,26 @@
   <div class="container">
     <p class="section-eyebrow">How it works</p>
     <h2 class="section-title">Four steps to your ride</h2>
-    <div class="how-steps">
-      <div class="how-step">
+    <div class="row g-4 g-lg-0 how-steps">
+      <div class="col-12 col-sm-6 col-lg how-step" style="padding:0 24px;">
         <div class="how-num">01</div>
-        <h3>Post your pickup</h3>
+        <h3>Post your 1pickup</h3>
         <p>Enter your pickup location and when your class starts. A few hours ahead is best — gives time for a match.</p>
       </div>
-      <div class="how-connector"></div>
-      <div class="how-step">
+      <div class="how-connector d-none d-lg-block"></div>
+      <div class="col-12 col-sm-6 col-lg how-step" style="padding:0 24px;">
         <div class="how-num">02</div>
         <h3>Requests go live</h3>
         <p>Nearby verified students heading in a similar direction can see your request — but no personal details yet.</p>
       </div>
-      <div class="how-connector"></div>
-      <div class="how-step">
+      <div class="how-connector d-none d-lg-block"></div>
+      <div class="col-12 col-sm-6 col-lg how-step" style="padding:0 24px;">
         <div class="how-num">03</div>
         <h3>A driver accepts</h3>
         <p>A student-driver already heading your way accepts. You see their name, car type, experience, and reviews.</p>
       </div>
-      <div class="how-connector"></div>
-      <div class="how-step">
+      <div class="how-connector d-none d-lg-block"></div>
+      <div class="col-12 col-sm-6 col-lg how-step" style="padding:0 24px;">
         <div class="how-num">04</div>
         <h3>Confirm & go</h3>
         <p>Both sides confirm and pay if applicable. The cost is calculated and split based on your locations.</p>
@@ -246,6 +259,7 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

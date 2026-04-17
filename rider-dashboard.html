@@ -98,7 +98,7 @@
           <div style="display:flex;color:var(--text3);"><i data-lucide="car" width="22" height="22" stroke-width="1.5"></i></div>
           <div class="ride-card-info">
             <div class="ride-card-route">Al Majaz <span style="color:var(--text3);">→</span> University City</div>
-            <div class="ride-card-meta"><span>Petrol</span><span>·</span><span>Fatima K.</span><span>·</span><span>Thu 20 Feb</span></div>
+            <div class="ride-card-meta"><span>Petrol</span><span>·</span><span class="driver-name" data-female="Fatima K." data-male="Ahmed K.">Fatima K.</span><span>·</span><span class="ride-date" data-days-ago="2"></span></div>
           </div>
           <div class="ride-card-price">10 AED<small>Subscription ride</small></div>
           <span class="badge badge-green">Completed</span>
@@ -107,7 +107,7 @@
           <div style="display:flex;color:var(--text3);"><i data-lucide="zap" width="22" height="22" stroke-width="1.5"></i></div>
           <div class="ride-card-info">
             <div class="ride-card-route">Sharjah Corniche <span style="color:var(--text3);">→</span> UoS Gate 2</div>
-            <div class="ride-card-meta"><span>Electric</span><span>·</span><span>Maha S.</span><span>·</span><span>Wed 19 Feb</span></div>
+            <div class="ride-card-meta"><span>Electric</span><span>·</span><span class="driver-name" data-female="Maha S." data-male="Omar S.">Maha S.</span><span>·</span><span class="ride-date" data-days-ago="3"></span></div>
           </div>
           <div class="ride-card-price">8 AED<small>Subscription ride</small></div>
           <span class="badge badge-green">Completed</span>
@@ -116,7 +116,7 @@
           <div style="display:flex;color:var(--text3);"><i data-lucide="car" width="22" height="22" stroke-width="1.5"></i></div>
           <div class="ride-card-info">
             <div class="ride-card-route">Al Khan <span style="color:var(--text3);">→</span> University City</div>
-            <div class="ride-card-meta"><span>Petrol</span><span>·</span><span>Layla A.</span><span>·</span><span>Mon 17 Feb</span></div>
+            <div class="ride-card-meta"><span>Petrol</span><span>·</span><span class="driver-name" data-female="Layla A." data-male="Khalid A.">Layla A.</span><span>·</span><span class="ride-date" data-days-ago="5"></span></div>
           </div>
           <div class="ride-card-price">10 AED<small>Paid</small></div>
           <span class="badge badge-amber">Rated</span>
@@ -143,6 +143,17 @@
   function cancelRide() {
     if (confirm('Cancel your current ride request?')) showToast('Ride request cancelled', 'info');
   }
+
+  document.querySelectorAll('.ride-date').forEach(el => {
+    const d = new Date();
+    d.setDate(d.getDate() - parseInt(el.dataset.daysAgo));
+    el.textContent = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' });
+  });
+
+  const gender = localStorage.getItem('meshwar_gender') || 'female';
+  document.querySelectorAll('.driver-name').forEach(el => {
+    el.textContent = gender === 'male' ? el.dataset.male : el.dataset.female;
+  });
 </script>
 </body>
 </html>
