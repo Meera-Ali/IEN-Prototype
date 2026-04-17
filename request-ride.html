@@ -77,15 +77,15 @@
           </div>
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="time-date-grid">
           <div class="form-group">
             <label class="form-label">Class Start Time</label>
-            <input type="time" class="form-input" value="09:00" />
+            <input type="time" class="form-input" value="09:00" style="padding:10px 12px;font-size:0.88rem;" />
             <span class="form-hint">When does your class begin?</span>
           </div>
           <div class="form-group">
             <label class="form-label">Pickup Date</label>
-            <input type="date" class="form-input" id="date-input" />
+            <input type="date" class="form-input" id="date-input" style="padding:10px 12px;font-size:0.88rem;" />
           </div>
         </div>
 
@@ -182,6 +182,10 @@
   .car-pref-opt p { font-size: 0.82rem; font-weight: 500; color: var(--text2); }
   .car-pref-opt.selected { border-color: var(--accent); background: rgba(108,99,255,0.08); }
   .car-pref-opt.selected p { color: var(--text); }
+  .time-date-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 480px) {
+    .time-date-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </body>
 </html>
