@@ -62,7 +62,7 @@
     <div style="display:flex;flex-direction:column;gap:16px;">
 
       <!-- Driver 1 - Petrol -->
-      <div class="driver-match-card" onclick="window.location.href='ride-confirm.html'" style="cursor:pointer;">
+      <div class="driver-match-card" onclick="selectDriver(1)" style="cursor:pointer;">
         <div class="driver-match-top">
           <div style="display:flex;align-items:center;gap:14px;">
             <div style="position:relative;">
@@ -87,13 +87,13 @@
           <span class="badge badge-green">✓ 3 yrs exp.</span>
         </div>
         <div style="display:flex;gap:10px;margin-top:16px;">
-          <button class="btn btn-primary" style="flex:1;" onclick="event.stopPropagation();window.location.href='ride-confirm.html'">Request this driver →</button>
+          <button class="btn btn-primary" style="flex:1;" onclick="event.stopPropagation();selectDriver(1)">Request this driver →</button>
           <button class="btn btn-ghost" onclick="event.stopPropagation();showToast('Driver reported to safety team', 'info')">🚩</button>
         </div>
       </div>
 
       <!-- Driver 2 - Electric -->
-      <div class="driver-match-card" onclick="window.location.href='ride-confirm.html'" style="cursor:pointer;border-color:rgba(34,197,94,0.2);">
+      <div class="driver-match-card" onclick="selectDriver(2)" style="cursor:pointer;border-color:rgba(34,197,94,0.2);">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:4px;">
           <span class="badge badge-green">🌱 Electric · Eco ride</span>
         </div>
@@ -121,13 +121,13 @@
           <span class="badge badge-green">✓ 5+ yrs exp.</span>
         </div>
         <div style="display:flex;gap:10px;margin-top:16px;">
-          <button class="btn btn-green" style="flex:1;" onclick="event.stopPropagation();window.location.href='ride-confirm.html'">Request this driver →</button>
+          <button class="btn btn-green" style="flex:1;" onclick="event.stopPropagation();selectDriver(2)">Request this driver →</button>
           <button class="btn btn-ghost" onclick="event.stopPropagation();showToast('Driver reported to safety team', 'info')">🚩</button>
         </div>
       </div>
 
       <!-- Driver 3 - Petrol, less ratings -->
-      <div class="driver-match-card" onclick="window.location.href='ride-confirm.html'" style="cursor:pointer;">
+      <div class="driver-match-card" onclick="selectDriver(3)" style="cursor:pointer;">
         <div class="driver-match-top">
           <div style="display:flex;align-items:center;gap:14px;">
             <div style="position:relative;">
@@ -152,7 +152,7 @@
           <span class="badge badge-neutral">1–2 yrs exp.</span>
         </div>
         <div style="display:flex;gap:10px;margin-top:16px;">
-          <button class="btn btn-secondary" style="flex:1;" onclick="event.stopPropagation();window.location.href='ride-confirm.html'">Request this driver →</button>
+          <button class="btn btn-secondary" style="flex:1;" onclick="event.stopPropagation();selectDriver(3)">Request this driver →</button>
           <button class="btn btn-ghost" onclick="event.stopPropagation();showToast('Driver reported to safety team', 'info')">🚩</button>
         </div>
       </div>
