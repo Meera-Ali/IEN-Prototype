@@ -66,11 +66,11 @@
         <div class="driver-match-top">
           <div style="display:flex;align-items:center;gap:14px;">
             <div style="position:relative;">
-              <div class="avatar avatar-md" style="background:#4f46e5;">F</div>
+              <div class="avatar avatar-md driver-match-avatar" data-female="F" data-male="F" style="background:#4f46e5;">F</div>
               <span style="position:absolute;bottom:-2px;right:-2px;font-size:0.9rem;">⛽</span>
             </div>
             <div>
-              <p style="font-weight:600;font-size:1rem;">F***ima K.</p>
+              <p class="driver-match-name" data-female="F***ima K." data-male="F***is K." style="font-weight:600;font-size:1rem;">F***ima K.</p>
               <div class="stars">★★★★★</div>
               <p style="color:var(--text3);font-size:0.8rem;">4.9 · 34 rides</p>
             </div>
@@ -100,11 +100,11 @@
         <div class="driver-match-top">
           <div style="display:flex;align-items:center;gap:14px;">
             <div style="position:relative;">
-              <div class="avatar avatar-md" style="background:var(--green);color:white;">M</div>
+              <div class="avatar avatar-md driver-match-avatar" data-female="M" data-male="O" style="background:var(--green);color:white;">M</div>
               <span style="position:absolute;bottom:-2px;right:-2px;font-size:0.9rem;">⚡</span>
             </div>
             <div>
-              <p style="font-weight:600;font-size:1rem;">M***ha S.</p>
+              <p class="driver-match-name" data-female="M***ha S." data-male="O***r S." style="font-weight:600;font-size:1rem;">M***ha S.</p>
               <div class="stars">★★★★★</div>
               <p style="color:var(--text3);font-size:0.8rem;">4.8 · 61 rides</p>
             </div>
@@ -131,11 +131,11 @@
         <div class="driver-match-top">
           <div style="display:flex;align-items:center;gap:14px;">
             <div style="position:relative;">
-              <div class="avatar avatar-md" style="background:#7c3aed;">L</div>
+              <div class="avatar avatar-md driver-match-avatar" data-female="L" data-male="K" style="background:#7c3aed;">L</div>
               <span style="position:absolute;bottom:-2px;right:-2px;font-size:0.9rem;">⛽</span>
             </div>
             <div>
-              <p style="font-weight:600;font-size:1rem;">L***la A.</p>
+              <p class="driver-match-name" data-female="L***la A." data-male="K***id A." style="font-weight:600;font-size:1rem;">L***la A.</p>
               <div class="stars">★★★★☆</div>
               <p style="color:var(--text3);font-size:0.8rem;">4.3 · 12 rides</p>
             </div>
@@ -166,6 +166,17 @@
 
 <div class="toast-container"></div>
 <script src="js/main.js"></script>
+<script>
+  (function () {
+    const gender = localStorage.getItem('meshwar_gender') || 'female';
+    document.querySelectorAll('.driver-match-name').forEach(el => {
+      el.textContent = gender === 'male' ? el.dataset.male : el.dataset.female;
+    });
+    document.querySelectorAll('.driver-match-avatar').forEach(el => {
+      el.textContent = gender === 'male' ? el.dataset.male : el.dataset.female;
+    });
+  })();
+</script>
 <style>
   .driver-match-card {
     background: var(--surface);
