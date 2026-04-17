@@ -19,9 +19,12 @@
     <a href="login.html" class="nav-link">Log in</a>
     <a href="signup.html" class="btn btn-primary btn-sm">Get started</a>
   </div>
-  <button class="d-lg-none btn btn-ghost btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav" aria-expanded="false">
-    <i data-lucide="menu" width="20" height="20"></i>
-  </button>
+  <div class="d-flex d-lg-none align-items-center" style="gap:8px;">
+    <div id="nav-mobile-end"></div>
+    <button class="btn btn-ghost btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav" aria-expanded="false">
+      <i data-lucide="menu" width="20" height="20"></i>
+    </button>
+  </div>
 </nav>
 <div class="collapse d-lg-none" id="mobileNav" style="position:fixed;top:65px;left:0;right:0;z-index:99;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:12px 24px;">
   <div style="display:flex;flex-direction:column;gap:4px;">
@@ -29,7 +32,6 @@
     <a href="#pricing" class="nav-link" data-bs-toggle="collapse" data-bs-target="#mobileNav">Pricing</a>
     <a href="#safety" class="nav-link" data-bs-toggle="collapse" data-bs-target="#mobileNav">Safety</a>
     <a href="login.html" class="nav-link">Log in</a>
-    <a href="signup.html" class="btn btn-primary btn-sm" style="margin-top:8px;width:fit-content;">Get started</a>
   </div>
 </div>
 
