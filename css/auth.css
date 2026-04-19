@@ -55,7 +55,7 @@
 }
 .upload-area:hover {
   border-color: var(--accent);
-  background: rgba(108,99,255,0.05);
+  background: rgba(255,255,255,0.04);
 }
 .upload-icon { font-size: 2.5rem; margin-bottom: 12px; }
 .upload-area p { color: var(--text2); font-size: 0.9rem; margin-bottom: 4px; }
@@ -73,7 +73,7 @@
   background: var(--bg2);
 }
 .gender-opt:hover { border-color: var(--border-hover); }
-.gender-opt.selected { border-color: var(--accent); background: rgba(108,99,255,0.08); }
+.gender-opt.selected { border-color: var(--accent); background: rgba(255,255,255,0.06); }
 .gender-opt input { display: none; }
 .gender-opt > span { display: block; margin-bottom: 8px; }
 .gender-symbol {
@@ -100,7 +100,7 @@
   background: var(--bg2);
 }
 .role-opt:hover { border-color: var(--border-hover); }
-.role-opt.selected { border-color: var(--accent); background: rgba(108,99,255,0.08); }
+.role-opt.selected { border-color: var(--accent); background: rgba(255,255,255,0.06); }
 .role-opt input { display: none; }
 .role-opt-icon { font-size: 2rem; margin-bottom: 10px; }
 .role-opt h4 { font-size: 1rem; margin-bottom: 4px; }

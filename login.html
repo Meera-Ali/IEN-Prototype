@@ -17,7 +17,7 @@
 </nav>
 
 <div class="auth-page page-wrap">
-  <div class="orb orb-purple" style="width:500px;height:500px;top:-100px;right:-100px;position:fixed;"></div>
+  <div class="orb orb-green-accent" style="width:500px;height:500px;top:-100px;right:-100px;position:fixed;"></div>
   <div class="container-sm" style="padding-top: 60px; padding-bottom: 60px; position:relative;z-index:1;">
 
     <div class="auth-header fade-up">
@@ -45,7 +45,7 @@
           <label class="form-label">Password</label>
           <div class="input-icon-wrap">
             <input type="password" class="form-input" placeholder="Enter your password" id="pw-input" required />
-            <button type="button" class="input-icon-btn" onclick="togglePw()">👁️</button>
+            <button type="button" class="input-icon-btn" onclick="togglePw(this)" id="pw-toggle"><i data-lucide="eye" width="16" height="16"></i></button>
           </div>
         </div>
 
@@ -82,9 +82,14 @@
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     btn.classList.add('active');
   }
-  function togglePw() {
+  function togglePw(btn) {
     const inp = document.getElementById('pw-input');
-    inp.type = inp.type === 'password' ? 'text' : 'password';
+    const showing = inp.type === 'password';
+    inp.type = showing ? 'text' : 'password';
+    btn.innerHTML = showing
+      ? '<i data-lucide="eye-off" width="16" height="16"></i>'
+      : '<i data-lucide="eye" width="16" height="16"></i>';
+    lucide.createIcons();
   }
   function handleLogin(e) {
     e.preventDefault();
