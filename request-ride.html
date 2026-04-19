@@ -67,12 +67,14 @@
           <div style="position:relative;">
             <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:1.1rem;">🎓</span>
             <select class="form-input form-select" style="padding-left:44px;" id="campus-select" onchange="checkEstimate()">
-              <option value="">Select your campus gate</option>
-              <option>University City – Main Gate</option>
-              <option>University City – Gate 2</option>
-              <option>University of Sharjah – Main</option>
-              <option>American University of Sharjah</option>
-              <option>Skyline University College</option>
+              <option value="">Select your destination</option>
+              <option>Main Building</option>
+              <option>Engineering &amp; Sciences Building (ESB)</option>
+              <option>CAAD Building (College of Architecture, Art &amp; Design)</option>
+              <option>Chemistry Building</option>
+              <option>Arts Building</option>
+              <option>New Academic Building (NAB)</option>
+              <option>Language Building</option>
             </select>
           </div>
         </div>
@@ -166,8 +168,12 @@
     });
   }
   function postRequest() {
-    const pickup = document.getElementById('pickup-input').value;
+    const pickup = document.getElementById('pickup-input').value.trim();
+    const destination = document.getElementById('campus-select').value;
     if (!pickup) { showToast('Please enter a pickup location', 'error'); return; }
+    if (!destination) { showToast('Please select a destination', 'error'); return; }
+    localStorage.setItem('ridePickup', pickup);
+    localStorage.setItem('rideDestination', destination);
     showToast('Ride request posted! Looking for drivers…', 'success');
     setTimeout(() => window.location.href = 'ride-matches.html', 1400);
   }

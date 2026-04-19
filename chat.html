@@ -272,9 +272,9 @@
           <hr class="chat-ride-header-divider">
           <div class="chat-ride-route-row">
             <div class="chat-ride-route-info">
-              <span>Al Majaz</span>
+              <span id="chat-route-pickup">—</span>
               <span class="route-arrow">→</span>
-              <span>University City</span>
+              <span id="chat-route-destination">—</span>
             </div>
             <div class="chat-ride-meta">
               <div class="chat-ride-meta-item">
@@ -287,15 +287,15 @@
               </div>
             </div>
           </div>
-          <div style="display:flex;justify-content:center;margin-top:14px;">
-            <button class="btn btn-ghost btn-sm" onclick="endRide()" style="border-color:rgba(239,68,68,0.3);color:var(--red);">End ride</button>
-          </div>
         </div>
 
         <!-- SAFETY BANNER -->
-        <div class="safety-note fade-up">
-          <i data-lucide="alert-triangle" width="15" height="15" stroke-width="2"></i>
-          Keep it ride-related. Contact details (phone numbers, social handles) are not allowed in chat.
+        <div class="safety-note fade-up" id="safety-banner" style="display:none;justify-content:space-between;align-items:center;gap:12px;">
+          <span style="display:flex;align-items:center;gap:8px;">
+            <i data-lucide="alert-triangle" width="15" height="15" stroke-width="2"></i>
+            Keep it ride-related. Contact details (phone numbers, social handles) are not allowed in chat.
+          </span>
+          <button onclick="dismissSafetyBanner()" style="flex-shrink:0;background:none;border:1px solid currentColor;border-radius:6px;padding:3px 10px;font-size:0.8rem;cursor:pointer;color:inherit;opacity:0.8;">OK</button>
         </div>
 
         <!-- MESSAGE THREAD -->
@@ -364,6 +364,19 @@
 <div class="toast-container"></div>
 <script src="js/main.js"></script>
 <script>
+  function dismissSafetyBanner() {
+    const banner = document.getElementById('safety-banner');
+    if (banner) banner.style.display = 'none';
+    localStorage.setItem('safetyBannerDismissed', 'true');
+  }
+
+  (function () {
+    if (!localStorage.getItem('safetyBannerDismissed')) {
+      const banner = document.getElementById('safety-banner');
+      if (banner) banner.style.display = 'flex';
+    }
+  })();
+
   // ── Role & sidebar ──────────────────────────────────────────
   const role = localStorage.getItem('meshwar_role') || 'rider';
   const isDriver = role === 'driver';
@@ -408,6 +421,10 @@
   document.getElementById('chat-peer-avatar').style.background = peerBg;
   document.getElementById('chat-pickup').textContent       = peerPickup.replace(' est.', '');
   document.getElementById('chat-eta').textContent          = peerEta;
+  const ridePickup = localStorage.getItem('ridePickup') || '—';
+  const rideDest   = localStorage.getItem('rideDestination') || '—';
+  document.getElementById('chat-route-pickup').textContent      = ridePickup;
+  document.getElementById('chat-route-destination').textContent = rideDest;
   document.querySelectorAll('.peer-avatar-seed').forEach(el => {
     el.textContent = peerInit;
     el.style.background = peerBg;
@@ -435,14 +452,7 @@
     }
   }
 
-  function endRide() {
-    if (!confirm('End this ride? Chat will close.')) return;
-    localStorage.removeItem('rideConfirmed');
-    showToast('Ride ended. Please rate your driver.', 'info');
-    setTimeout(() => window.location.href = isDriver ? 'driver-dashboard.html' : 'rider-dashboard.html', 1800);
-  }
-
-  const messages = document.getElementById('chat-messages');
+const messages = document.getElementById('chat-messages');
   const input = document.getElementById('chat-input');
 
   function scrollToBottom() {

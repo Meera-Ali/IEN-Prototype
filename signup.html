@@ -193,10 +193,7 @@
     if (email) localStorage.setItem('meshwar_email', email);
     const gender = document.getElementById('go-f').classList.contains('selected') ? 'female' : 'male';
     localStorage.setItem('meshwar_gender', gender);
-    showToast('Account created! Redirecting…', 'success');
-    setTimeout(() => {
-      window.location.href = isDriver ? 'signup-driver.html' : 'rider-dashboard.html';
-    }, 1200);
+    window.location.href = isDriver ? 'signup-driver.html' : 'rider-dashboard.html';
   }
 </script>
 </body>

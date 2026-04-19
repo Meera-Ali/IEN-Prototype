@@ -38,7 +38,7 @@
     <div class="topbar" style="margin-bottom:20px;">
       <div class="topbar-greeting">
         <h2>Nearby drivers</h2>
-        <p>Al Majaz → University City · Class at 9:00 AM</p>
+        <p id="ride-route-summary">Finding drivers…</p>
       </div>
       <div class="topbar-actions">
         <a href="request-ride.html" class="btn btn-ghost btn-sm">← Edit request</a>
@@ -202,6 +202,12 @@
     document.querySelectorAll('.driver-match-avatar').forEach(el => {
       el.textContent = gender === 'male' ? el.dataset.male : el.dataset.female;
     });
+    const pickup = localStorage.getItem('ridePickup') || '';
+    const destination = localStorage.getItem('rideDestination') || '';
+    const summaryEl = document.getElementById('ride-route-summary');
+    if (summaryEl && pickup && destination) {
+      summaryEl.textContent = pickup + ' → ' + destination;
+    }
   })();
 </script>
 <style>
