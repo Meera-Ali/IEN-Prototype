@@ -46,6 +46,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
+      flex-wrap: wrap;
     }
     .chat-ride-route-info {
       display: flex;
@@ -54,10 +55,16 @@
       font-size: 0.85rem;
       color: var(--text2);
       font-weight: 500;
-      white-space: nowrap;
-      flex-wrap: nowrap;
+      min-width: 0;
+      flex: 1;
     }
-    .chat-ride-route-info .route-arrow { color: var(--text3); }
+    .chat-ride-route-info span:not(.route-arrow) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+    }
+    .chat-ride-route-info .route-arrow { color: var(--text3); flex-shrink: 0; }
     .chat-ride-meta {
       display: flex;
       align-items: center;
