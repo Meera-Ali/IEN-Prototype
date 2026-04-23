@@ -101,10 +101,12 @@ input, select, textarea { font-family: inherit; }
   border-bottom: 1px solid var(--border);
 }
 .nav-logo {
-  font-family: 'Times New Roman MT Condensed', 'Times New Roman', serif;
-  font-size: 1.4rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
+  display: flex;
+  align-items: center;
+}
+.nav-logo img {
+  height: 44px;
+  width: auto;
 }
 .nav-logo span { color: var(--accent); }
 .nav-links { display: flex; gap: 8px; align-items: center; }
