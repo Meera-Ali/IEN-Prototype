@@ -80,6 +80,15 @@
           <input type="text" class="form-input" placeholder="e.g. University of Sharjah" />
         </div>
         <div class="form-group">
+          <label class="form-label">Emergency Contact Name</label>
+          <input type="text" class="form-input" placeholder="e.g. Sara Ali" id="ec-name-input" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Emergency Contact Phone</label>
+          <input type="tel" class="form-input" placeholder="e.g. +971 50 123 4567" id="ec-phone-input" />
+          <span class="form-hint">This person will be alerted if you trigger an SOS.</span>
+        </div>
+        <div class="form-group">
           <label class="form-label">Gender</label>
           <div class="gender-toggle">
             <label class="gender-opt selected" id="go-m" onclick="selectGender('male')">
@@ -193,6 +202,10 @@
     if (email) localStorage.setItem('meshwar_email', email);
     const gender = document.getElementById('go-f').classList.contains('selected') ? 'female' : 'male';
     localStorage.setItem('meshwar_gender', gender);
+    const ecName = document.getElementById('ec-name-input').value.trim();
+    const ecPhone = document.getElementById('ec-phone-input').value.trim();
+    if (ecName) localStorage.setItem('meshwar_ec_name', ecName);
+    if (ecPhone) localStorage.setItem('meshwar_ec_phone', ecPhone);
     window.location.href = isDriver ? 'signup-driver.html' : 'rider-dashboard.html';
   }
 </script>
